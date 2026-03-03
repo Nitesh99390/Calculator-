@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SinghPriya Infinity Pro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --accent: #f093fb;
+            --dark: #080c14;
+            --glass: rgba(255, 255, 255, 0.05);
+            --neon-glow: 0 0 15px rgba(0, 242, 254, 0.5);
+        }
+
+        body {
+            background: var(--dark);
+            background-image: radial-gradient(circle at top right, #1a2a6c, #b21f1f00), 
+                              radial-gradient(circle at bottom left, #121212, #000);
+            color: #e0e0e0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding-bottom: 100px;
+            min-height: 100vh;
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        /* Loading Screen */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--dark); z-index: 9999; display: flex;
+            flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Glass Cards with Neon Border */
+        .pro-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 28px;
+            padding: 22px;
+            margin-bottom: 18px;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .pro-card:active { transform: scale(0.97); }
+
+        /* Neon Clock */
+        .clock-box {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: var(--neon-glow);
+            letter-spacing: -2px;
+        }
+
+        /* Calculator Elite UI */
+        .c-screen {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-size: 3rem;
+            text-align: right;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            width: 100%;
+            box-shadow: inset 0 0 10px rgba(0,242,254,0.2);
+        }
+
+        .btn-elite {
+            height: 72px; border-radius: 20px; border: none;
+            background: #1e293b; color: white; font-size: 1.4rem;
+            font-weight: 600; transition: 0.1s;
+        }
+        .btn-elite:active { background: var(--primary); color: #000; }
+        .btn-op { background: var(--accent); color: #fff; }
+        .btn-equal { background: linear-gradient(45deg, var(--primary), var(--secondary)); color: #000; }
+
+        /* Fixed Navigation 3.0 */
+        .nav-dock {
+            position: fixed; bottom: 20px; left: 15px; right: 15px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(30px); border-radius: 30px;
+            height: 80px; display: flex; justify-content: space-around;
+            align-items: center; border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8); z-index: 2000;
+        }
+        .nav-link { 
+            background: none; border: none; color: #64748b; 
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .nav-link.active { color: var(--primary); text-shadow: var(--neon-glow); }
+        .nav-link i { font-size: 1.8rem; margin-bottom: 5px; font-style: normal; }
+
+        /* Pages */
+        .page { display: none; animation: pageIn 0.4s ease; }
+        .page.active { display: block; }
+        @keyframes pageIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body onload="init()">
+
+<div id="loader">
+    <div class="spinner-border text-info mb-3" role="status"></div>
+    <h5 class="text-info tracking-widest">SINGHPRIYA OS</h5>
+</div>
+
+<div class="container pt-4">
+    <div id="p-home" class="page active">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold">Infinity Suite</h2>
+            <div class="pro-card p-2 px-3 m-0 rounded-pill border-info">
+                <span id="batt-text">--%</span> <span id="batt-ico">🔋</span>
+            </div>
+        </div>
+
+        <div class="pro-card text-center mb-4">
+            <div id="clock" class="clock-box">00:00:00</div>
+            <p id="full-date" class="text-secondary small mt-2 fw-bold"></p>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-6">
+                <div class="pro-card text-center" onclick="vibrate(); toggleFlash()">
+                    <div id="torch-ico" style="font-size: 2.2rem;">🔦</div>
+                    <small>Flashlight</small>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="pro-card text-center">
+                    <div style="font-size: 2.2rem; color: #ffcc00;">☀️</div>
+                    <small>Clear Sky</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="p-calc" class="page">
+        <h4 class="mb-4 fw-bold">Elite Calculator</h4>
+        <div class="pro-card">
+            <input type="text" id="calc-screen" class="c-screen" readonly placeholder="0">
+            <div class="row g-2">
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="vibrate(); cClear()">C</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('(')">(</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn(')')">)</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="vibrate(); cIn('/')">÷</button></div>
+                
+                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('7')">7</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('8')">8</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('9')">9</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="vibrate(); cIn('*')">×</button></div>
+                
+                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('4')">4</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('5')">5</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('6')">6</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="vibrate(); cIn('-')">-</button></div>
+                
+                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('1')">1</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('2')">2</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('3')">3</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="vibrate(); cIn('+')">+</button></div>
+                
+                <div class="col-6"><button class="btn-elite w-100" onclick="vibrate(); cIn('0')">0</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('.')">.</button></div>
+                <div class="col-3"><button class="btn-elite btn-equal w-100" onclick="vibrate(); cSolve()">=</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="p-tools" class="page">
+        <h4 class="mb-4 fw-bold">Unit Hub</h4>
+        <div class="pro-card">
+            <h6>Currency (Real-time)</h6>
+            <div class="input-group my-3">
+                <input type="number" id="amt" class="form-control bg-dark text-white border-0" placeholder="Value">
+                <select id="cur" class="form-select bg-dark text-white border-0">
+                    <option value="83.15">USD to INR</option>
+                    <option value="90.45">EUR to INR</option>
+                    <option value="0.56">JPY to INR</option>
+                </select>
+            </div>
+            <button class="btn btn-info w-100 rounded-pill py-2 fw-bold" onclick="vibrate(); convert()">CONVERT</button>
+            <h2 id="res" class="text-center mt-3 text-info">₹ 0.00</h2>
+        </div>
+
+        <div class="pro-card text-center">
+            <h6>Precise Stopwatch</h6>
+            <div class="display-4 fw-bold my-2" id="sw">00:00.0</div>
+            <div class="d-flex gap-2">
+                <button class="btn btn-success flex-grow-1" onclick="vibrate(); swStart()">START</button>
+                <button class="btn btn-danger flex-grow-1" onclick="vibrate(); swStop()">STOP</button>
+                <button class="btn btn-secondary" onclick="vibrate(); swReset()">RESET</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="p-notes" class="page">
+        <h4 class="mb-4 fw-bold">Notes Manager</h4>
+        <div class="pro-card">
+            <textarea id="noteInp" class="form-control bg-dark text-white border-0 mb-3" rows="3" placeholder="Click to write..."></textarea>
+            <button class="btn btn-primary w-100 rounded-pill py-2" onclick="vibrate(); addNote()">SAVE NOTE</button>
+            <div id="notesList" class="mt-4"></div>
+        </div>
+    </div>
+</div>
+
+<div class="nav-dock">
+    <button class="nav-link active" onclick="show('home', this)"><i>🏠</i>Home</button>
+    <button class="nav-link" onclick="show('calc', this)"><i>🔢</i>Calc</button>
+    <button class="nav-link" onclick="show('tools', this)"><i>⚙️</i>Tools</button>
+    <button class="nav-link" onclick="show('notes', this)"><i>📝</i>Notes</button>
+</div>
+
+<script>
+    // Initializer
+    function init() {
+        setTimeout(() => { document.getElementById('loader').style.opacity = '0'; 
+        setTimeout(() => document.getElementById('loader').style.display='none', 500); }, 1500);
+        updateClock();
+        initBattery();
+    }
+
+    // Vibration Support
+    function vibrate() { if(window.navigator.vibrate) window.navigator.vibrate(25); }
+
+    // Page Switcher
+    function show(p, btn) {
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        document.getElementById('p-' + p).classList.add('active');
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        btn.classList.add('active');
+        vibrate();
+    }
+
+    // Clock Logic
+    function updateClock() {
+        const d = new Date();
+        document.getElementById('clock').innerText = d.toLocaleTimeString([], {hour12: false});
+        document.getElementById('full-date').innerText = d.toLocaleDateString(undefined, {weekday:'long', month:'long', day:'numeric'});
+        setTimeout(updateClock, 1000);
+    }
+
+    // Calculator logic
+    const sc = document.getElementById('calc-screen');
+    function cIn(v) { sc.value += v; }
+    function cClear() { sc.value = ''; }
+    function cSolve() { try { sc.value = eval(sc.value.replace('÷','/').replace('×','*')); } catch { sc.value = 'Error'; } }
+
+    // Flashlight Toggle
+    let fOn = false;
+    function toggleFlash() {
+        fOn = !fOn;
+        document.getElementById('torch-ico').innerText = fOn ? '💡' : '🔦';
+        document.body.style.filter = fOn ? "brightness(1.2)" : "none";
+    }
+
+    // Converter
+    function convert() {
+        const v = document.getElementById('amt').value;
+        const r = document.getElementById('cur').value;
+        document.getElementById('res').innerText = "₹ " + (v * r).toLocaleString('en-IN');
+    }
+
+    // Stopwatch
+    let stime = 0, sint;
+    function swStart() { clearInterval(sint); sint = setInterval(() => { stime += 0.1; document.getElementById('sw').innerText = stime.toFixed(1); }, 100); }
+    function swStop() { clearInterval(sint); }
+    function swReset() { swStop(); stime = 0; document.getElementById('sw').innerText = "00:00.0"; }
+
+    // Battery System
+    function initBattery() {
+        navigator.getBattery().then(b => {
+            const up = () => {
+                document.getElementById('batt-text').innerText = Math.round(b.level * 100) + "%";
+                document.getElementById('batt-ico').innerText = b.charging ? "⚡" : "🔋";
+            };
+            up(); b.onlevelchange = up; b.onchargingchange = up;
+        });
+    }
+
+    // Notes
+    function addNote() {
+        const t = document.getElementById('noteInp').value;
+        if(!t) return;
+        const d = document.createElement('div');
+        d.className = 'pro-card d-flex justify-content-between align-items-center mb-2 py-2';
+        d.innerHTML = `<span>${t}</span><button class="btn btn-sm text-danger" onclick="this.parentElement.remove()">×</button>`;
+        document.getElementById('notesList').prepend(d);
+        document.getElementById('noteInp').value = '';
+    }
+</script>
+</body>
+</html>
