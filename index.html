@@ -420,3 +420,176 @@
        ✈️ Telegram: bhuimharniteshbhuimhar2
     </a>
 </div>
+</body><div class="game-container">
+    <h2>Tic-Tac-Toe: Man vs AI / Man vs Man</h2>
+    <div class="controls">
+        <button onclick="setMode('ai')">Play vs AI</button>
+        <button onclick="setMode('manual')">Play vs Human</button>
+    </div>
+    
+    <div id="board" class="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+    </div><script>
+    let board = ["", "", "", "", "", "", "", "", ""];
+    let currentPlayer = "X"; // Human is X
+    let gameActive = true;
+    let mode = 'ai'; // Default mode
+
+    const winConditions = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+    ];
+
+    const cells = document.querySelectorAll('.cell');
+    const statusDisplay = document.querySelector('#status');
+    const resetBtn = document.querySelector('#reset-btn');
+
+    function setMode(newMode) {
+        mode = newMode;
+        statusDisplay.innerText = mode === 'ai' ? "Mode: Play vs AI" : "Mode: Man vs Man";
+        resetGame();
+    }
+
+    cells.forEach(cell => cell.addEventListener('click', handleCellClick));
+
+    function handleCellClick(e) {
+        const index = e.target.getAttribute('data-index');
+        if (board[index] !== "" || !gameActive) return;
+
+        makeMove(index, currentPlayer);
+
+        if (gameActive && mode === 'ai' && currentPlayer === "O") {
+            setTimeout(aiMove, 300);
+        }
+    }
+
+    function makeMove(index, player) {
+        board[index] = player;
+        cells[index].innerText = player;
+        checkResult();
+        currentPlayer = currentPlayer === "X" ? "O" : "X";
+    }
+
+    function checkResult() {
+        let roundWon = false;
+        for (let condition of winConditions) {
+            if (board[condition[0]] && board[condition[0]] === board[condition[1]] && board[condition[0]] === board[condition[2]]) {
+                roundWon = true;
+                condition.forEach(idx => cells[idx].classList.add('winning-cell'));
+                break;
+            }
+        }
+
+        if (roundWon) {
+            statusDisplay.innerText = `Player ${board[currentPlayer === "X" ? 0 : 1]} Wins!`;
+            gameActive = false;
+            resetBtn.style.display = "inline-block";
+            return;
+        }
+
+        if (!board.includes("")) {
+            statusDisplay.innerText = "It's a Draw!";
+            gameActive = false;
+            resetBtn.style.display = "inline-block";
+        }
+    }
+
+    // --- Pro AI Logic (Minimax) ---
+    function aiMove() {
+        let bestScore = -Infinity;
+        let move;
+        for (let i = 0; i < 9; i++) {
+            if (board[i] === "") {
+                board[i] = "O";
+                let score = minimax(board, 0, false);
+                board[i] = "";
+                if (score > bestScore) {
+                    bestScore = score;
+                    move = i;
+                }
+            }
+        }
+        makeMove(move, "O");
+    }
+
+    function minimax(board, depth, isMaximizing) {
+        let result = checkWinnerForAI();
+        if (result !== null) return result === "O" ? 10 : result === "X" ? -10 : 0;
+
+        if (isMaximizing) {
+            let bestScore = -Infinity;
+            for (let i = 0; i < 9; i++) {
+                if (board[i] === "") {
+                    board[i] = "O";
+                    let score = minimax(board, depth + 1, false);
+                    board[i] = "";
+                    bestScore = Math.max(score, bestScore);
+                }
+            }
+            return bestScore;
+        } else {
+            let bestScore = Infinity;
+            for (let i = 0; i < 9; i++) {
+                if (board[i] === "") {
+                    board[i] = "X";
+                    let score = minimax(board, depth + 1, true);
+                    board[i] = "";
+                    bestScore = Math.min(score, bestScore);
+                }
+            }
+            return bestScore;
+        }
+    }
+
+    function checkWinnerForAI() {
+        for (let condition of winConditions) {
+            if (board[condition[0]] && board[condition[0]] === board[condition[1]] && board[condition[0]] === board[condition[2]]) {
+                return board[condition[0]];
+            }
+        }
+        return board.includes("") ? null : "tie";
+    }
+
+    function resetGame() {
+        board = ["", "", "", "", "", "", "", "", ""];
+        gameActive = true;
+        currentPlayer = "X";
+        cells.forEach(cell => {
+            cell.innerText = "";
+            cell.classList.remove('winning-cell');
+        });
+        statusDisplay.innerText = mode === 'ai' ? "Mode: Play vs AI" : "Mode: Man vs Man";
+        resetBtn.style.display = "none";
+    }
+    </script>
+    
+
+    <div id="status">Mode: Play vs AI</div>
+    <button id="reset-btn" onclick="resetGame()" style="display:none;">Reset Game</button>
+</div>
+<style>
+    .game-container { text-align: center; font-family: sans-serif; margin-top: 20px; }
+    .board { 
+        display: grid; grid-template-columns: repeat(3, 100px); 
+        gap: 5px; margin: 20px auto; width: 310px; 
+    }
+    .cell { 
+        width: 100px; height: 100px; background: #f0f0f0; 
+        display: flex; align-items: center; justify-content: center; 
+        font-size: 2rem; font-weight: bold; cursor: pointer; border: 2px solid #333;
+    }
+    .cell:hover { background: #ddd; }
+    .controls { margin-bottom: 10px; }
+    button { padding: 10px 20px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 5px; margin: 5px; }
+    #status { font-size: 1.2rem; font-weight: bold; margin: 10px; }
+    .winning-cell { background-color: #28a745 !important; color: white; }
+</style>
