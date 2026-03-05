@@ -294,7 +294,123 @@
         document.getElementById('notesList').prepend(d);
         document.getElementById('noteInp').value = '';
     }
+</script><div id="sp-sidebar" class="sp-sidebar">
+    <div class="sp-sidebar-header">
+        <h3>SinghPriya OS</h3>
+        <p id="sp-live-clock">00:00:00</p>
+    </div>
+    <hr style="border: 0.1px solid rgba(255,255,255,0.1)">
+    <div class="sp-menu">
+        <button onclick="alert('Profile Loading...')"><i class="fas fa-user-circle"></i> Profile</button>
+        <button onclick="toggleTheme()"><i class="fas fa-moon"></i> Switch Theme</button>
+        <button onclick="window.location.reload()"><i class="fas fa-sync-alt"></i> Refresh OS</button>
+        <button onclick="toggleSidebar()" class="close-btn">Close [X]</button>
+    </div>
+    <div class="sp-footer">
+        <small>Infinity Pro v2.0</small>
+    </div>
+</div>
+
+<button onclick="toggleSidebar()" id="sidebar-toggle-btn">
+    <i class="fas fa-cog"></i>
+</button>
+
+<style>
+    /* Sidebar ka Main Design */
+    .sp-sidebar {
+        position: fixed;
+        right: -300px; /* Shuruat mein screen ke bahar rahega */
+        top: 0;
+        width: 250px;
+        height: 100vh;
+        background: rgba(15, 15, 15, 0.7); /* Dark Glass Look */
+        backdrop-filter: blur(15px);
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+        color: white;
+        transition: 0.5s ease-in-out;
+        z-index: 9999; /* Sabse upar dikhne ke liye */
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Jab Sidebar Open ho */
+    .sp-sidebar.active {
+        right: 0;
+    }
+
+    .sp-sidebar-header h3 { margin-bottom: 5px; color: #00d2ff; }
+    #sp-live-clock { font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; }
+
+    .sp-menu { flex-grow: 1; display: flex; flex-direction: column; gap: 10px; }
+
+    .sp-menu button {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: white;
+        padding: 12px;
+        text-align: left;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .sp-menu button:hover {
+        background: rgba(0, 210, 255, 0.3);
+        transform: scale(1.05);
+    }
+
+    .close-btn { margin-top: 20px; background: rgba(255, 0, 0, 0.2) !important; text-align: center !important; }
+
+    /* Floating Button Style */
+    #sidebar-toggle-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #00d2ff;
+        color: white;
+        border: none;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        cursor: pointer;
+        z-index: 10000;
+        font-size: 20px;
+        transition: 0.3s;
+    }
+
+    #sidebar-toggle-btn:hover { transform: rotate(90deg); }
+
+    .sp-footer { text-align: center; opacity: 0.5; font-size: 10px; }
+</style>
+
+<script>
+    // Sidebar Khulne aur Band hone ke liye
+    function toggleSidebar() {
+        document.getElementById('sp-sidebar').classList.toggle('active');
+    }
+
+    // Live Clock Update karne ke liye
+    setInterval(() => {
+        const time = new Date().toLocaleTimeString();
+        document.getElementById('sp-live-clock').innerText = time;
+    }, 1000);
+
+    // Theme Switcher (Simple Toggle)
+    function toggleTheme() {
+        document.body.classList.toggle('light-theme');
+        if(document.body.classList.contains('light-theme')) {
+            document.body.style.filter = "invert(0)";
+            alert("Light Mode Activated");
+        } else {
+            alert("Dark Mode Activated");
+        }
+    }
 </script>
+
+    
 </body>
 </html><!DOCTYPE html>
 <div style="text-align: center; margin: 20px;">
