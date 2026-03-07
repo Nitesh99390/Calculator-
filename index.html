@@ -1,593 +1,389 @@
 <!DOCTYPE html>
 <html lang="hi">
-<head> <meta name="google-site-verification" content="Za1pEupQLM-LlPnODka_5pMgrC6DyOzmuDaZBepfg7Q" />
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nitesh smart Calculator - Free Android Calculator App Download</title>
+    <title>Infinity Suite Pro · SinghPriya OS</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>Infinity Suite Pro · SinghPriya OS</title>
+    <meta name="title" content="Infinity Suite Pro · SinghPriya OS">
+    <meta name="description" content="Nitesh Bhuimhar's Ultimate All-in-One Digital Toolkit. Calculator, Notes, Games, and more.">
+    <meta name="keywords" content="Nitesh Bhuimhar, Infinity Suite, Web Tools, SinghPriya OS, Utility App">
+    <meta name="author" content="Nitesh Bhuimhar">
+    <meta name="theme-color" content="#00f2fe">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nitesh-hub.github.io/"> <meta property="og:title" content="Infinity Suite Pro · SinghPriya OS">
+    <meta property="og:description" content="Elite multi-utility dashboard for daily tasks. Fast, Secure, and Stylish.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/nitesh-hub/assets/main/banner.png">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Infinity Suite Pro">
+    <meta property="twitter:description" content="All-in-one Toolkit by Nitesh Bhuimhar.">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/nitesh-hub/assets/main/banner.png">
+
+    <meta name="google-site-verification" content="Za1pEupQLM-LlPnODka_5pMgrC6DyOzmuDaZBepfg7Q" />
+
+    <link rel="icon" type="image/png" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/svgs/solid/infinity.svg">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* ... aapka purana CSS yahan rahega ... */
+    </style>
+</head>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
             --primary: #00f2fe;
             --secondary: #4facfe;
-            --accent: #f093fb;
-            --dark: #080c14;
-            --glass: rgba(255, 255, 255, 0.05);
-            --neon-glow: 0 0 15px rgba(0, 242, 254, 0.5);
+            --dark: #0f172a;
+            --glass: rgba(255, 255, 255, 0.1);
         }
-<style><div style="text-align: center; margin: 20px;">
-    <p style="font-family: Arial, sans-serif; color: #555;">Join for updates:</p>
-    <a href="https://t.me/bhuimharniteshbhuimhar2" target="_blank" 
-       style="background-color: #0088cc; color: white; padding: 12px 20px; text-decoration: none; border-radius: 25px; font-weight: bold; display: inline-block; transition: 0.3s;">
-       ✈️ Telegram: bhuimharniteshbhuimhar2
-    </a>
-</div>
-        
-    body{
-  background:linear-gradient(270deg,#ff0080,#ff8c00,#40e0d0,#8a2be2);
-  background-size:800% 800%;
-  animation:bgMove 10s infinite alternate;
-}
+        body {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: #fff;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-bottom: 100px;
+        }
+        @keyframes gradient { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
 
-@keyframes bgMove{
-  0%{background-position:0% 50%;}
-  100%{background-position:100% 50%;}
-}
-
-        /* Loading Screen */
         #loader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--dark); z-index: 9999; display: flex;
-            flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 0.5s ease;
+            position: fixed; inset: 0; background: var(--dark); z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: 0.5s;
         }
-
-        /* Glass Cards with Neon Border */
         .pro-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 28px;
-            padding: 22px;
-            margin-bottom: 18px;
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px; padding: 20px; margin-bottom: 15px;
+            transition: 0.3s transform;
         }
+        .pro-card:hover { transform: translateY(-3px); }
 
-        .pro-card:active { transform: scale(0.97); }
-
-    
-
-        /* Calculator Elite UI */
+        /* Calculator Styles */
         .c-screen {
-            background: rgba(0,0,0,0.5);
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            font-size: 3rem;
-            text-align: right;
-            padding: 20px;
-            border-radius: 20px;
-            margin-bottom: 15px;
-            width: 100%;
-            box-shadow: inset 0 0 10px rgba(0,242,254,0.2);
+            background: #000; border: 1px solid var(--primary);
+            color: var(--primary); font-size: 2.5rem; text-align: right;
+            padding: 15px; border-radius: 15px; width: 100%; margin-bottom: 15px;
         }
-
         .btn-elite {
-            height: 72px; border-radius: 20px; border: none;
-            background: #1e293b; color: white; font-size: 1.4rem;
-            font-weight: 600; transition: 0.1s;
+            height: 65px; border-radius: 15px; border: none;
+            background: #1e293b; color: white; font-weight: 600; font-size: 1.2rem;
         }
-        .btn-elite:active { background: var(--primary); color: #000; }
-        .btn-op { background: var(--accent); color: #fff; }
-        .btn-equal { background: linear-gradient(45deg, var(--primary), var(--secondary)); color: #000; }
+        .btn-op { background: #6366f1; }
+        .btn-equal { background: linear-gradient(to right, var(--primary), var(--secondary)); color: #000; }
 
-        /* Fixed Navigation 3.0 */
+        /* Navigation Dock */
         .nav-dock {
-            position: fixed; bottom: 20px; left: 15px; right: 15px;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(30px); border-radius: 30px;
-            height: 80px; display: flex; justify-content: space-around;
-            align-items: center; border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.8); z-index: 2000;
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 500px; background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(20px); border-radius: 30px;
+            display: flex; justify-content: space-around; padding: 10px;
+            border: 1px solid rgba(255,255,255,0.1); z-index: 2000;
         }
-        .nav-link { 
-            background: none; border: none; color: #64748b; 
-            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;
-            display: flex; flex-direction: column; align-items: center;
+        .nav-link {
+            color: #94a3b8; border: none; background: none; font-size: 0.7rem;
+            display: flex; flex-direction: column; align-items: center; text-decoration: none;
         }
-        .nav-link.active { color: var(--primary); text-shadow: var(--neon-glow); }
-        .nav-link i { font-size: 1.8rem; margin-bottom: 5px; font-style: normal; }
+        .nav-link.active { color: var(--primary); }
+        .nav-link i { font-size: 1.5rem; margin-bottom: 2px; }
 
-        /* Pages */
-        .page { display: none; animation: pageIn 0.4s ease; }
+        .page { display: none; animation: slideUp 0.4s ease; }
         .page.active { display: block; }
-        @keyframes pageIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Game Board */
+        .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 300px; margin: auto; }
+        .cell {
+            background: var(--glass); aspect-ratio: 1; border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; font-weight: bold; cursor: pointer; border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Sidebar */
+        .sp-sidebar {
+            position: fixed; right: -300px; top: 0; width: 280px; height: 100vh;
+            background: rgba(10, 10, 20, 0.95); backdrop-filter: blur(20px);
+            z-index: 10000; padding: 30px 20px; transition: 0.4s;
+        }
+        .sp-sidebar.active { right: 0; }
+        #sidebar-toggle-btn {
+            position: fixed; bottom: 100px; right: 20px; width: 55px; height: 55px;
+            border-radius: 50%; background: var(--primary); border: none; z-index: 999;
+        }
     </style>
 </head>
 <body onload="init()">
-<a href="https://t.me/bhuimharniteshbhuimhar9">God novel hindi</a>
+
 <div id="loader">
-    <div class="spinner-border text-info mb-3" role="status"></div>
-    <h5 class="text-info tracking-widest">SINGHPRIYA OS</h5>
+    <div class="spinner-grow text-info mb-3"></div>
+    <h4 class="text-info">SINGHPRIYA OS</h4>
 </div>
 
 <div class="container pt-4">
     <div id="p-home" class="page active">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="fw-bold">Infinity Suite</h2>
-            <div class="pro-card p-2 px-3 m-0 rounded-pill border-info">
-                <span id="batt-text">--%</span> <span id="batt-ico">🔋</span>
+            <h3><i class="fas fa-bolt text-warning"></i> Infinity Suite</h3>
+            <div class="pro-card p-2 px-3 m-0 rounded-pill">
+                <span id="batt-text">100%</span> <span id="batt-ico">🔋</span>
             </div>
         </div>
-
-        <div class="pro-card text-center mb-4">
-            <div id="clock" class="clock-box">00:00:00</div>
-            <p id="full-date" class="text-secondary small mt-2 fw-bold"></p>
+        
+        <div class="pro-card text-center py-5">
+            <h1 id="clock" class="display-3 fw-bold mb-0">00:00:00</h1>
+            <p id="full-date" class="text-info"></p>
         </div>
 
         <div class="row g-3">
             <div class="col-6">
-                <div class="pro-card text-center" onclick="vibrate(); toggleFlash()">
-                    <div id="torch-ico" style="font-size: 2.2rem;">🔦</div>
-                    <small>Flashlight</small>
+                <div class="pro-card text-center" onclick="toggleFlash()">
+                    <i id="torch-ico" class="fas fa-lightbulb fa-3x mb-2"></i><br>Flashlight
                 </div>
             </div>
             <div class="col-6">
                 <div class="pro-card text-center">
-                    <div style="font-size: 2.2rem; color: #ffcc00;">☀️</div>
-                    <small>Clear Sky</small>
+                    <i class="fas fa-cloud-sun fa-3x mb-2 text-warning"></i><br>Weather
                 </div>
             </div>
         </div>
     </div>
 
     <div id="p-calc" class="page">
-        <h4 class="mb-4 fw-bold">Elite Calculator</h4>
+        <h4 class="mb-3">Calculator</h4>
         <div class="pro-card">
-            <input type="text" id="calc-screen" class="c-screen" readonly placeholder="0">
+            <input type="text" id="calc-screen" class="c-screen" readonly value="">
             <div class="row g-2">
-                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="vibrate(); cClear()">C</button></div>
-                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('(')">(</button></div>
-                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn(')')">)</button></div>
-                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="vibrate(); cIn('/')">÷</button></div>
-                
-                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('7')">7</button></div>
-                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('8')">8</button></div>
-                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('9')">9</button></div>
-                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="vibrate(); cIn('*')">×</button></div>
-                
-                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('4')">4</button></div>
-                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('5')">5</button></div>
-                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('6')">6</button></div>
-                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="vibrate(); cIn('-')">-</button></div>
-                
-                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('1')">1</button></div>
-                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('2')">2</button></div>
-                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('3')">3</button></div>
-                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="vibrate(); cIn('+')">+</button></div>
-                
-                <div class="col-6"><button class="btn-elite w-100" onclick="vibrate(); cIn('0')">0</button></div>
-                <div class="col-3"><button class="btn-elite w-100" onclick="vibrate(); cIn('.')">.</button></div>
-                <div class="col-3"><button class="btn-elite btn-equal w-100" onclick="vibrate(); cSolve()">=</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="cClear()">C</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="cIn('(')">(</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="cIn(')')">)</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="cIn('/')">/</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('7')">7</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('8')">8</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('9')">9</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="cIn('*')">×</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('4')">4</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('5')">5</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('6')">6</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="cIn('-')">-</button></div>
+                <div class="col-6"><button class="btn-elite w-100" onclick="cIn('0')">0</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('.')">.</button></div>
+                <div class="col-3"><button class="btn-elite btn-equal w-100" onclick="cSolve()">=</button></div>
             </div>
         </div>
     </div>
 
     <div id="p-tools" class="page">
-        <h4 class="mb-4 fw-bold">Unit Hub</h4>
         <div class="pro-card">
-            <h6>Currency (Real-time)</h6>
-            <div class="input-group my-3">
-                <input type="number" id="amt" class="form-control bg-dark text-white border-0" placeholder="Value">
-                <select id="cur" class="form-select bg-dark text-white border-0">
-                    <option value="83.15">USD to INR</option>
-                    <option value="90.45">EUR to INR</option>
-                    <option value="0.56">JPY to INR</option>
-                </select>
-            </div>
-            <button class="btn btn-info w-100 rounded-pill py-2 fw-bold" onclick="vibrate(); convert()">CONVERT</button>
-            <h2 id="res" class="text-center mt-3 text-info">₹ 0.00</h2>
+            <h5>Currency Converter</h5>
+            <input type="number" id="amt" class="form-control mb-2" value="1">
+            <select id="cur" class="form-select mb-3">
+                <option value="83.15">USD to INR</option>
+                <option value="90.50">EUR to INR</option>
+            </select>
+            <button class="btn btn-info w-100" onclick="convert()">Convert</button>
+            <h3 id="res" class="mt-3 text-center">₹ 83.15</h3>
         </div>
-
         <div class="pro-card text-center">
-            <h6>Precise Stopwatch</h6>
-            <div class="display-4 fw-bold my-2" id="sw">00:00.0</div>
-            <div class="d-flex gap-2">
-                <button class="btn btn-success flex-grow-1" onclick="vibrate(); swStart()">START</button>
-                <button class="btn btn-danger flex-grow-1" onclick="vibrate(); swStop()">STOP</button>
-                <button class="btn btn-secondary" onclick="vibrate(); swReset()">RESET</button>
+            <h5>Stopwatch</h5>
+            <h2 id="sw" class="display-4">00:00.0</h2>
+            <div class="btn-group w-100">
+                <button class="btn btn-success" onclick="swStart()">Start</button>
+                <button class="btn btn-danger" onclick="swStop()">Stop</button>
+                <button class="btn btn-secondary" onclick="swReset()">Reset</button>
             </div>
         </div>
     </div>
 
     <div id="p-notes" class="page">
-        <h4 class="mb-4 fw-bold">Notes Manager</h4>
         <div class="pro-card">
-            <textarea id="noteInp" class="form-control bg-dark text-white border-0 mb-3" rows="3" placeholder="Click to write..."></textarea>
-            <button class="btn btn-primary w-100 rounded-pill py-2" onclick="vibrate(); addNote()">SAVE NOTE</button>
-            <div id="notesList" class="mt-4"></div>
+            <h5>Notes</h5>
+            <textarea id="noteInp" class="form-control mb-2" placeholder="Write something..."></textarea>
+            <button class="btn btn-primary w-100" onclick="addNote()">Save Note</button>
+            <div id="notesList" class="mt-3"></div>
+        </div>
+    </div>
+
+    <div id="p-game" class="page">
+        <div class="pro-card text-center">
+            <h5 id="game-status">Tic-Tac-Toe</h5>
+            <div class="board" id="board">
+                <div class="cell" onclick="makeMove(0)"></div>
+                <div class="cell" onclick="makeMove(1)"></div>
+                <div class="cell" onclick="makeMove(2)"></div>
+                <div class="cell" onclick="makeMove(3)"></div>
+                <div class="cell" onclick="makeMove(4)"></div>
+                <div class="cell" onclick="makeMove(5)"></div>
+                <div class="cell" onclick="makeMove(6)"></div>
+                <div class="cell" onclick="makeMove(7)"></div>
+                <div class="cell" onclick="makeMove(8)"></div>
+            </div>
+            <button class="btn btn-outline-light mt-3" onclick="resetGame()">Reset Game</button>
         </div>
     </div>
 </div>
 
 <div class="nav-dock">
-    <button class="nav-link active" onclick="show('home', this)"><i>🏠</i>Home</button>
-    <button class="nav-link" onclick="show('calc', this)"><i>🔢</i>Calc</button>
-    <button class="nav-link" onclick="show('tools', this)"><i>⚙️</i>Tools</button>
-    <button class="nav-link" onclick="show('notes', this)"><i>📝</i>Notes</button>
+    <button class="nav-link active" onclick="showPage('home', this)"><i class="fas fa-home"></i>Home</button>
+    <button class="nav-link" onclick="showPage('calc', this)"><i class="fas fa-calculator"></i>Calc</button>
+    <button class="nav-link" onclick="showPage('tools', this)"><i class="fas fa-toolbox"></i>Tools</button>
+    <button class="nav-link" onclick="showPage('notes', this)"><i class="fas fa-edit"></i>Notes</button>
+    <button class="nav-link" onclick="showPage('game', this)"><i class="fas fa-gamepad"></i>Game</button>
+</div>
+
+<button id="sidebar-toggle-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+
+<div class="sp-sidebar" id="sp-sidebar">
+    <h4>Settings</h4>
+    <hr>
+    <button class="btn btn-dark w-100 mb-2" onclick="location.reload()">Refresh OS</button>
+    <button class="btn btn-danger w-100" onclick="toggleSidebar()">Close</button>
 </div>
 
 <script>
-    // Initializer
+    // System Initialization
     function init() {
-        setTimeout(() => { document.getElementById('loader').style.opacity = '0'; 
-        setTimeout(() => document.getElementById('loader').style.display='none', 500); }, 1500);
+        setTimeout(() => {
+            document.getElementById('loader').style.opacity = '0';
+            setTimeout(() => document.getElementById('loader').style.display = 'none', 500);
+        }, 1000);
         updateClock();
-        initBattery();
+        loadNotes();
+        updateBattery();
     }
 
-    // Vibration Support
-    function vibrate() { if(window.navigator.vibrate) window.navigator.vibrate(25); }
-
-    // Page Switcher
-    function show(p, btn) {
-        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-        document.getElementById('p-' + p).classList.add('active');
+    function showPage(id, btn) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('p-'+id).classList.add('active');
         document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
         btn.classList.add('active');
-        vibrate();
+        if(window.navigator.vibrate) window.navigator.vibrate(10);
     }
 
     // Clock Logic
     function updateClock() {
-        const d = new Date();
-        document.getElementById('clock').innerText = d.toLocaleTimeString([], {hour12: false});
-        document.getElementById('full-date').innerText = d.toLocaleDateString(undefined, {weekday:'long', month:'long', day:'numeric'});
+        const now = new Date();
+        document.getElementById('clock').innerText = now.toLocaleTimeString([], {hour12: false});
+        document.getElementById('full-date').innerText = now.toDateString();
         setTimeout(updateClock, 1000);
     }
 
-    // Calculator logic
+    // Battery Logic
+    async function updateBattery() {
+        if(navigator.getBattery) {
+            const batt = await navigator.getBattery();
+            const update = () => {
+                document.getElementById('batt-text').innerText = Math.round(batt.level * 100) + '%';
+            };
+            batt.addEventListener('levelchange', update);
+            update();
+        }
+    }
+
+    // Calculator Logic
     const sc = document.getElementById('calc-screen');
     function cIn(v) { sc.value += v; }
     function cClear() { sc.value = ''; }
-    function cSolve() { try { sc.value = eval(sc.value.replace('÷','/').replace('×','*')); } catch { sc.value = 'Error'; } }
+    function cSolve() {
+        try { sc.value = eval(sc.value) || ''; } catch { sc.value = 'Error'; }
+    }
 
-    // Flashlight Toggle
-    let fOn = false;
+    // Flashlight Simulation
+    let flash = false;
     function toggleFlash() {
-        fOn = !fOn;
-        document.getElementById('torch-ico').innerText = fOn ? '💡' : '🔦';
-        document.body.style.filter = fOn ? "brightness(1.2)" : "none";
+        flash = !flash;
+        document.getElementById('torch-ico').className = flash ? "fas fa-lightbulb fa-3x text-warning" : "fas fa-lightbulb fa-3x";
+        document.body.style.filter = flash ? "brightness(1.2)" : "none";
     }
 
-    // Converter
-    function convert() {
-        const v = document.getElementById('amt').value;
-        const r = document.getElementById('cur').value;
-        document.getElementById('res').innerText = "₹ " + (v * r).toLocaleString('en-IN');
-    }
-
-    // Stopwatch
-    let stime = 0, sint;
-    function swStart() { clearInterval(sint); sint = setInterval(() => { stime += 0.1; document.getElementById('sw').innerText = stime.toFixed(1); }, 100); }
-    function swStop() { clearInterval(sint); }
-    function swReset() { swStop(); stime = 0; document.getElementById('sw').innerText = "00:00.0"; }
-
-    // Battery System
-    function initBattery() {
-        navigator.getBattery().then(b => {
-            const up = () => {
-                document.getElementById('batt-text').innerText = Math.round(b.level * 100) + "%";
-                document.getElementById('batt-ico').innerText = b.charging ? "⚡" : "🔋";
-            };
-            up(); b.onlevelchange = up; b.onchargingchange = up;
-        });
-    }
-
-    // Notes
+    // Notes Logic (Local Storage)
     function addNote() {
-        const t = document.getElementById('noteInp').value;
-        if(!t) return;
-        const d = document.createElement('div');
-        d.className = 'pro-card d-flex justify-content-between align-items-center mb-2 py-2';
-        d.innerHTML = `<span>${t}</span><button class="btn btn-sm text-danger" onclick="this.parentElement.remove()">×</button>`;
-        document.getElementById('notesList').prepend(d);
+        const txt = document.getElementById('noteInp').value;
+        if(!txt) return;
+        let notes = JSON.parse(localStorage.getItem('my_notes') || '[]');
+        notes.push(txt);
+        localStorage.setItem('my_notes', JSON.stringify(notes));
         document.getElementById('noteInp').value = '';
+        loadNotes();
     }
-</script><div id="sp-sidebar" class="sp-sidebar">
-    <div class="sp-sidebar-header">
-        <h3>SinghPriya OS</h3>
-        <p id="sp-live-clock">00:00:00</p>
-    </div>
-    <hr style="border: 0.1px solid rgba(255,255,255,0.1)">
-    <div class="sp-menu">
-        <button onclick="alert('Profile Loading...')"><i class="fas fa-user-circle"></i> Profile</button>
-        <button onclick="toggleTheme()"><i class="fas fa-moon"></i> Switch Theme</button>
-        <button onclick="window.location.reload()"><i class="fas fa-sync-alt"></i> Refresh OS</button>
-        <button onclick="toggleSidebar()" class="close-btn">Close [X]</button>
-    </div>
-    <div class="sp-footer">
-        <small>Infinity Pro v2.0</small>
-    </div>
-</div>
-
-<button onclick="toggleSidebar()" id="sidebar-toggle-btn">
-    <i class="fas fa-cog"></i>
-</button>
-
-<style>
-    /* Sidebar ka Main Design */
-    .sp-sidebar {
-        position: fixed;
-        right: -300px; /* Shuruat mein screen ke bahar rahega */
-        top: 0;
-        width: 250px;
-        height: 100vh;
-        background: rgba(15, 15, 15, 0.7); /* Dark Glass Look */
-        backdrop-filter: blur(15px);
-        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-        color: white;
-        transition: 0.5s ease-in-out;
-        z-index: 9999; /* Sabse upar dikhne ke liye */
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        font-family: 'Poppins', sans-serif;
+    function loadNotes() {
+        const list = document.getElementById('notesList');
+        const notes = JSON.parse(localStorage.getItem('my_notes') || '[]');
+        list.innerHTML = notes.map((n, i) => `
+            <div class="pro-card d-flex justify-content-between">
+                <span>${n}</span>
+                <i class="fas fa-trash text-danger" onclick="delNote(${i})"></i>
+            </div>
+        `).join('');
+    }
+    function delNote(i) {
+        let notes = JSON.parse(localStorage.getItem('my_notes'));
+        notes.splice(i, 1);
+        localStorage.setItem('my_notes', JSON.stringify(notes));
+        loadNotes();
     }
 
-    /* Jab Sidebar Open ho */
-    .sp-sidebar.active {
-        right: 0;
-    }
-
-    .sp-sidebar-header h3 { margin-bottom: 5px; color: #00d2ff; }
-    #sp-live-clock { font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; }
-
-    .sp-menu { flex-grow: 1; display: flex; flex-direction: column; gap: 10px; }
-
-    .sp-menu button {
-        background: rgba(255, 255, 255, 0.1);
-        border: none;
-        color: white;
-        padding: 12px;
-        text-align: left;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .sp-menu button:hover {
-        background: rgba(0, 210, 255, 0.3);
-        transform: scale(1.05);
-    }
-
-    .close-btn { margin-top: 20px; background: rgba(255, 0, 0, 0.2) !important; text-align: center !important; }
-
-    /* Floating Button Style */
-    #sidebar-toggle-btn {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: #00d2ff;
-        color: white;
-        border: none;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        cursor: pointer;
-        z-index: 10000;
-        font-size: 20px;
-        transition: 0.3s;
-    }
-
-    #sidebar-toggle-btn:hover { transform: rotate(90deg); }
-
-    .sp-footer { text-align: center; opacity: 0.5; font-size: 10px; }
-</style>
-
-<script>
-    // Sidebar Khulne aur Band hone ke liye
-    function toggleSidebar() {
-        document.getElementById('sp-sidebar').classList.toggle('active');
-    }
-
-    // Live Clock Update karne ke liye
-    setInterval(() => {
-        const time = new Date().toLocaleTimeString();
-        document.getElementById('sp-live-clock').innerText = time;
-    }, 1000);
-
-    // Theme Switcher (Simple Toggle)
-    function toggleTheme() {
-        document.body.classList.toggle('light-theme');
-        if(document.body.classList.contains('light-theme')) {
-            document.body.style.filter = "invert(0)";
-            alert("Light Mode Activated");
-        } else {
-            alert("Dark Mode Activated");
+    // Tic-Tac-Toe Logic
+    let board = ["","","","","","","","",""];
+    function makeMove(i) {
+        if(board[i] === "") {
+            board[i] = "X";
+            renderBoard();
+            if(!checkWin()) setTimeout(aiMove, 500);
         }
     }
-</script>
-<a href="https://nitesh99390.github.io/Car-/"><img src="https://play-lh.googleusercontent.com/..." alt="car game ></a>
-    
-</body>
-</html><!DOCTYPE html>
-<div style="text-align: center; margin: 20px;">
-    <p style="font-family: Arial, sans-serif; color: #555;">Join for updates:</p>
-    <a href="https://t.me/bhuimharniteshbhuimhar2" target="_blank" 
-       style="background-color: #0088cc; color: white; padding: 12px 20px; text-decoration: none; border-radius: 25px; font-weight: bold; display: inline-block; transition: 0.3s;">
-       ✈️ Telegram: bhuimharniteshbhuimhar2
-    </a>
-</div>
-</body><div class="game-container">
-    <h2>Tic-Tac-Toe: Man vs AI / Man vs Man</h2>
-    <div class="controls">
-        <button onclick="setMode('ai')">Play vs AI</button>
-        <button onclick="setMode('manual')">Play vs Human</button>
-    </div>
-    
-    <div id="board" class="board">
-        <div class="cell" data-index="0"></div>
-        <div class="cell" data-index="1"></div>
-        <div class="cell" data-index="2"></div>
-        <div class="cell" data-index="3"></div>
-        <div class="cell" data-index="4"></div>
-        <div class="cell" data-index="5"></div>
-        <div class="cell" data-index="6"></div>
-        <div class="cell" data-index="7"></div>
-        <div class="cell" data-index="8"></div>
-    </div><script>
-    let board = ["", "", "", "", "", "", "", "", ""];
-    let currentPlayer = "X"; // Human is X
-    let gameActive = true;
-    let mode = 'ai'; // Default mode
-
-    const winConditions = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8],
-        [0, 3, 6], [1, 4, 7], [2, 5, 8],
-        [0, 4, 8], [2, 4, 6]
-    ];
-
-    const cells = document.querySelectorAll('.cell');
-    const statusDisplay = document.querySelector('#status');
-    const resetBtn = document.querySelector('#reset-btn');
-
-    function setMode(newMode) {
-        mode = newMode;
-        statusDisplay.innerText = mode === 'ai' ? "Mode: Play vs AI" : "Mode: Man vs Man";
-        resetGame();
-    }
-
-    cells.forEach(cell => cell.addEventListener('click', handleCellClick));
-
-    function handleCellClick(e) {
-        const index = e.target.getAttribute('data-index');
-        if (board[index] !== "" || !gameActive) return;
-
-        makeMove(index, currentPlayer);
-
-        if (gameActive && mode === 'ai' && currentPlayer === "O") {
-            setTimeout(aiMove, 300);
-        }
-    }
-
-    function makeMove(index, player) {
-        board[index] = player;
-        cells[index].innerText = player;
-        checkResult();
-        currentPlayer = currentPlayer === "X" ? "O" : "X";
-    }
-
-    function checkResult() {
-        let roundWon = false;
-        for (let condition of winConditions) {
-            if (board[condition[0]] && board[condition[0]] === board[condition[1]] && board[condition[0]] === board[condition[2]]) {
-                roundWon = true;
-                condition.forEach(idx => cells[idx].classList.add('winning-cell'));
-                break;
-            }
-        }
-
-        if (roundWon) {
-            statusDisplay.innerText = `Player ${board[currentPlayer === "X" ? 0 : 1]} Wins!`;
-            gameActive = false;
-            resetBtn.style.display = "inline-block";
-            return;
-        }
-
-        if (!board.includes("")) {
-            statusDisplay.innerText = "It's a Draw!";
-            gameActive = false;
-            resetBtn.style.display = "inline-block";
-        }
-    }
-
-    // --- Pro AI Logic (Minimax) ---
     function aiMove() {
-        let bestScore = -Infinity;
-        let move;
-        for (let i = 0; i < 9; i++) {
-            if (board[i] === "") {
-                board[i] = "O";
-                let score = minimax(board, 0, false);
-                board[i] = "";
-                if (score > bestScore) {
-                    bestScore = score;
-                    move = i;
-                }
-            }
-        }
-        makeMove(move, "O");
-    }
-
-    function minimax(board, depth, isMaximizing) {
-        let result = checkWinnerForAI();
-        if (result !== null) return result === "O" ? 10 : result === "X" ? -10 : 0;
-
-        if (isMaximizing) {
-            let bestScore = -Infinity;
-            for (let i = 0; i < 9; i++) {
-                if (board[i] === "") {
-                    board[i] = "O";
-                    let score = minimax(board, depth + 1, false);
-                    board[i] = "";
-                    bestScore = Math.max(score, bestScore);
-                }
-            }
-            return bestScore;
-        } else {
-            let bestScore = Infinity;
-            for (let i = 0; i < 9; i++) {
-                if (board[i] === "") {
-                    board[i] = "X";
-                    let score = minimax(board, depth + 1, true);
-                    board[i] = "";
-                    bestScore = Math.min(score, bestScore);
-                }
-            }
-            return bestScore;
+        let empty = board.map((v, i) => v === "" ? i : null).filter(v => v !== null);
+        if(empty.length > 0) {
+            board[empty[Math.floor(Math.random()*empty.length)]] = "O";
+            renderBoard();
+            checkWin();
         }
     }
-
-    function checkWinnerForAI() {
-        for (let condition of winConditions) {
-            if (board[condition[0]] && board[condition[0]] === board[condition[1]] && board[condition[0]] === board[condition[2]]) {
-                return board[condition[0]];
+    function renderBoard() {
+        const cells = document.querySelectorAll('.cell');
+        board.forEach((v, i) => cells[i].innerText = v);
+    }
+    function checkWin() {
+        const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+        for(let s of wins) {
+            if(board[s[0]] && board[s[0]] === board[s[1]] && board[s[0]] === board[s[2]]) {
+                alert(board[s[0]] + " Wins!");
+                resetGame();
+                return true;
             }
         }
-        return board.includes("") ? null : "tie";
+        return false;
     }
+    function resetGame() { board = board.fill(""); renderBoard(); }
 
-    function resetGame() {
-        board = ["", "", "", "", "", "", "", "", ""];
-        gameActive = true;
-        currentPlayer = "X";
-        cells.forEach(cell => {
-            cell.innerText = "";
-            cell.classList.remove('winning-cell');
-        });
-        statusDisplay.innerText = mode === 'ai' ? "Mode: Play vs AI" : "Mode: Man vs Man";
-        resetBtn.style.display = "none";
+    // Sidebar
+    function toggleSidebar() { document.getElementById('sp-sidebar').classList.toggle('active'); }
+
+    // Stopwatch Logic
+    let startTime, timer;
+    function swStart() { 
+        startTime = Date.now(); 
+        timer = setInterval(() => {
+            let diff = new Date(Date.now() - startTime);
+            document.getElementById('sw').innerText = diff.toISOString().substr(14, 7);
+        }, 100);
     }
-    </script>
+    function swStop() { clearInterval(timer); }
+    function swReset() { clearInterval(timer); document.getElementById('sw').innerText = "00:00.0"; }
+</script>
+</body>
+    </html>
     
-
-    <div id="status">Mode: Play vs AI</div>
-    <button id="reset-btn" onclick="resetGame()" style="display:none;">Reset Game</button>
-</div>
-<style>
-    .game-container { text-align: center; font-family: sans-serif; margin-top: 20px; }
-    .board { 
-        display: grid; grid-template-columns: repeat(3, 100px); 
-        gap: 5px; margin: 20px auto; width: 310px; 
-    }
-    .cell { 
-        width: 100px; height: 100px; background: #f0f0f0; 
-        display: flex; align-items: center; justify-content: center; 
-        font-size: 2rem; font-weight: bold; cursor: pointer; border: 2px solid #333;
-    }
-    .cell:hover { background: #ddd; }
-    .controls { margin-bottom: 10px; }
-    button { padding: 10px 20px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 5px; margin: 5px; }
-    #status { font-size: 1.2rem; font-weight: bold; margin: 10px; }
-    .winning-cell { background-color: #28a745 !important; color: white; }
-</style>
