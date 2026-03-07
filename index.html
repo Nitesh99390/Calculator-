@@ -384,6 +384,16 @@
     function swStop() { clearInterval(timer); }
     function swReset() { clearInterval(timer); document.getElementById('sw').innerText = "00:00.0"; }
 </script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/Calculator-/service-worker.js')
+        .then(reg => console.log('Service Worker registered', reg))
+        .catch(err => console.error('Service Worker not registered', err));
+    });
+  }
+    </script>
+    
 </body>
     </html>
     
