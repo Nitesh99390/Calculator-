@@ -1,12 +1,11 @@
 {
   "name": "SinghPriya OS 2026",
-  "short_name": "NK",
+  "short_name": "SinghPriya",
   "description": "A modern web OS with AI, games, and tools.",
-  "start_url": "index.html",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#00f2fe",
-  "orientation": "portrait",
   "icons": [
     {
       "src": "https://via.placeholder.com/192.png?text=SO",
@@ -18,5 +17,13 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "scope": ".",
+  "orientation": "portrait",
+  "lang": "hi",
+  "serviceworker": {
+    "src": "/sw.js",
+    "scope": ".",
+    "type": "classic"
+  }
 }
