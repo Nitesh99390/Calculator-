@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Primary Meta Tags -->
+    <title>SinghPriya OS 2026 · Infinity Suite Pro</title>
+    <meta name="title" content="SinghPriya OS 2026 · Infinity Suite Pro">
+    <meta name="description" content="SinghPriya OS 2026 – A modern, feature-rich operating system in your browser with AI chat, games, tools, and more.">
+    <meta name="keywords" content="SinghPriya OS, web OS, PWA, AI chat, calculator, games, productivity">
+    <meta name="author" content="SinghPriya">
+    <meta name="theme-color" content="#00f2fe">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SinghPriya OS 2026">
+    <meta property="og:description" content="A futuristic web OS with AI, games, and tools.">
+    <meta property="og:image" content="https://via.placeholder.com/512.png?text=SinghPriya+OS">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="SinghPriya OS 2026">
+    <meta property="twitter:description" content="A futuristic web OS with AI, games, and tools.">
+
+    <!-- Manifest for PWA (external file) -->
+    <link rel="manifest" href="manifest.json">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- QR Code library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        :root {
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --bg-start: #ee7752;
+            --bg-mid: #e73c7e;
+            --bg-end: #23a6d5;
+            --bg-last: #23d5ab;
+            --glass: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(0, 0, 0, 0.4);
+            --text-color: #fff;
+            --dock-bg: rgba(15, 23, 42, 0.9);
+            --nav-inactive: #94a3b8;
+        }
+        body.light-mode {
+            --bg-start: #f5f7fa;
+            --bg-mid: #c3cfe2;
+            --bg-end: #e0eafc;
+            --bg-last: #cfd9df;
+            --glass: rgba(0, 0, 0, 0.05);
+            --card-bg: rgba(255, 255, 255, 0.6);
+            --text-color: #0f172a;
+            --dock-bg: rgba(255, 255, 255, 0.8);
+            --nav-inactive: #334155;
+        }
+        body {
+            background: linear-gradient(-45deg, var(--bg-start), var(--bg-mid), var(--bg-end), var(--bg-last));
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: var(--text-color);
+            font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-bottom: 100px;
+            transition: background 0.3s, color 0.2s;
+        }
+        @keyframes gradient { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
+
+        #loader {
+            position: fixed; inset: 0; background: #0f172a; z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: 0.5s;
+        }
+        .pro-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 28px; padding: 20px; margin-bottom: 15px;
+            transition: 0.3s transform, 0.3s box-shadow;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.3);
+        }
+        .pro-card:hover {
+            transform: perspective(1000px) rotateX(2deg) rotateY(1deg) scale(1.01);
+            box-shadow: 0 30px 40px -10px black;
+        }
+
+        .c-screen {
+            background: #000; border: 1px solid var(--primary);
+            color: var(--primary); font-size: 2.5rem; text-align: right;
+            padding: 15px; border-radius: 20px; width: 100%; margin-bottom: 15px;
+            font-family: monospace;
+        }
+        .btn-elite { height: 65px; border-radius: 18px; border: none; background: #1e293b; color: white; font-weight: 600; font-size: 1.2rem; transition: 0.1s; }
+        .btn-elite:active { transform: scale(0.95); }
+        .btn-op { background: #6366f1; }
+        .btn-equal { background: linear-gradient(to right, var(--primary), var(--secondary)); color: #000; }
+        .btn-func { background: #f59e0b; color: #000; }
+
+        .nav-dock {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            width: 95%; max-width: 800px; background: var(--dock-bg);
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            border-radius: 40px;
+            display: flex; justify-content: space-around; padding: 10px 5px;
+            border: 1px solid rgba(255,255,255,0.2); z-index: 2000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .nav-link { color: var(--nav-inactive); border: none; background: none; font-size: 0.6rem; display: flex; flex-direction: column; align-items: center; text-decoration: none; flex:1; }
+        .nav-link.active { color: var(--primary); }
+        .nav-link i { font-size: 1.3rem; margin-bottom: 2px; }
+
+        .page { display: none; animation: slideUp 0.4s cubic-bezier(0.2, 0.9, 0.3, 1); }
+        .page.active { display: block; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        #drawing-pad { background: white; border-radius: 25px; cursor: crosshair; touch-action: none; width: 100%; height: auto; display: block; }
+        .progress { height: 10px; border-radius: 20px; background: rgba(255,255,255,0.1); }
+        .todo-item { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 18px; margin-bottom: 5px; }
+        .todo-item.done { text-decoration: line-through; opacity: 0.6; }
+        
+        .sp-sidebar {
+            position: fixed; right: -300px; top: 0; width: 280px; height: 100vh;
+            background: rgba(20, 20, 30, 0.95); backdrop-filter: blur(20px);
+            z-index: 10000; padding: 30px 20px; transition: 0.4s;
+            border-left: 1px solid rgba(255,255,255,0.1);
+        }
+        .sp-sidebar.active { right: 0; }
+        #sidebar-toggle-btn { position: fixed; bottom: 100px; right: 20px; width: 55px; height: 55px; border-radius: 30px; background: var(--primary); border: none; z-index: 999; box-shadow: 0 5px 20px #00f2fe; }
+        
+        /* Game styles */
+        .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 300px; margin: 0 auto; }
+        .cell { height: 80px; background: rgba(255,255,255,0.1); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; backdrop-filter: blur(5px); }
+
+        /* memory game */
+        .memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 15px; }
+        .memory-card { aspect-ratio: 1/1; background: var(--primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; cursor: pointer; transform-style: preserve-3d; transition: 0.3s; }
+
+        /* Simon game */
+        .simon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 300px; margin: 20px auto; }
+        .simon-btn { aspect-ratio: 1/1; border-radius: 30px; border: none; cursor: pointer; opacity: 0.7; transition: 0.1s; }
+        .simon-btn.active { opacity: 1; transform: scale(0.95); box-shadow: 0 0 20px white; }
+        #simon-green { background: #2ecc71; }
+        #simon-red { background: #e74c3c; }
+        #simon-yellow { background: #f1c40f; }
+        #simon-blue { background: #3498db; }
+        #simon-status { font-size: 1.2rem; margin-bottom: 10px; }
+
+        /* apps grid */
+        .apps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .app-tile { background: rgba(255,255,255,0.05); border-radius: 24px; padding: 15px 5px; text-align: center; border:1px solid rgba(255,255,255,0.1); backdrop-filter: blur(8px); }
+
+        /* chat UI */
+        .chat-messages { height: 150px; overflow-y: auto; background: rgba(0,0,0,0.2); border-radius: 18px; padding: 10px; margin-bottom: 10px; }
+        .chat-bubble { background: var(--primary); color: black; padding: 8px 12px; border-radius: 20px; margin-bottom: 5px; max-width: 80%; }
+        .chat-bubble.user { background: var(--secondary); margin-left: auto; color: white; }
+        .chat-bubble.ai { background: var(--primary); }
+
+        /* chart container */
+        #expenseChart, #taskChart { max-height: 200px; }
+
+        /* iPhone-like toggles */
+        .ios-switch { width: 50px; height: 28px; background: #ccc; border-radius: 28px; display: inline-block; position: relative; cursor: pointer; }
+        .ios-switch.active { background: #34c759; }
+        .ios-switch::after { content: ''; width: 26px; height: 26px; background: white; border-radius: 50%; position: absolute; top: 1px; left: 1px; transition: 0.2s; }
+        .ios-switch.active::after { left: 23px; }
+
+        /* Password vault */
+        .vault-item { display: flex; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 8px; border-radius: 10px; margin-bottom: 5px; }
+
+        /* Onboarding modal */
+        .onboarding-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 20000; display: flex; align-items: center; justify-content: center; }
+        .onboarding-card { max-width: 300px; background: var(--card-bg); backdrop-filter: blur(20px); border-radius: 30px; padding: 20px; text-align: center; }
+    </style>
+</head>
+<body onload="init()">
+<a href="https://wa.me/917718906857" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="50" height="50">
+</a>
+<a href="https://www.instagram.com/nitesh_jord?igsh=bHJycWg0cWVscDN6" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" width="50" height="50">
+</a>
+    <a href="https://t.me/bhuimharniteshbhuimhar2" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" width="50" height="50">
+    </a>
+    <a href="https://www.facebook.com/share/1DXcknSgch/" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg" alt="Facebook" width="50" height="50">
+    </a>
+    
+<div id="loader">
+    <div class="spinner-grow text-info mb-3"></div>
+    <h4 id="loader-text">SINGHPRIYA OS 2026</h4>
+</div>
+
+<!-- Onboarding Modal (shown on first visit) -->
+<div id="onboarding" class="onboarding-modal" style="display: none;">
+    <div class="onboarding-card">
+        <h3>🚀 Welcome to SinghPriya OS 2026</h3>
+        <p>Your all-in-one smart assistant. Swipe through the dock to explore:</p>
+        <ul style="text-align: left;">
+            <li>🏠 Home – Clock, battery, quick tools</li>
+            <li>🧮 Calculator – Scientific with √, x², % and more</li>
+            <li>🔧 Tools – QR, unit converter, pomodoro</li>
+            <li>✅ Tasks – To-do, expenses, charts</li>
+            <li>🎮 Games – TicTac, Memory, Simon</li>
+            <li>📱 Apps – Weather, notes, stopwatch & more</li>
+            <li>⚡ Pro Hub – AI chat, voice, music, vault</li>
+        </ul>
+        <button class="btn btn-primary" onclick="closeOnboarding()">Get Started</button>
+    </div>
+</div>
+
+<div class="container pt-4">
+    <!-- Home Page -->
+    <div id="p-home" class="page active">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 id="os-title"><i class="fas fa-bolt text-warning"></i> SinghPriya OS 2026</h3>
+            <div class="d-flex gap-2">
+                <span class="pro-card p-2 px-3 m-0 rounded-pill" id="batt-container"><span id="batt-text">100%</span> <span id="batt-ico">🔋</span></span>
+                <span class="pro-card p-2 px-3 m-0 rounded-pill" onclick="toggleMusic()"><i class="fas fa-music" id="music-icon"></i></span>
+            </div>
+        </div>
+        
+        <div class="pro-card text-center py-5">
+            <h1 id="clock" class="display-3 fw-bold mb-0">00:00:00</h1>
+            <p id="full-date" class="text-info"></p>
+            <small id="storage-info" class="text-white-50"></small>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-6"><div class="pro-card text-center" onclick="alert('Flashlight feature requires hardware access.')"><i id="torch-ico" class="fas fa-lightbulb fa-2x mb-2"></i><br>Flashlight</div></div>
+            <div class="col-6"><div class="pro-card text-center" onclick="startVoiceRecognition()"><i class="fas fa-microphone fa-2x mb-2 text-danger"></i><br>Voice AI</div></div>
+            <div class="col-6"><div class="pro-card text-center" onclick="genPassword()"><i class="fas fa-key fa-2x mb-2 text-success"></i><br>Pass Gen</div></div>
+            <div class="col-6"><div class="pro-card text-center" onclick="showPage('draw', event)"><i class="fas fa-paint-brush fa-2x mb-2 text-info"></i><br>Draw Pad</div></div>
+        </div>
+    </div>
+
+    <!-- Calculator Page (with PLUS button added) -->
+    <div id="p-calc" class="page">
+        <h4 class="mb-3">Scientific Calculator</h4>
+        <div class="pro-card">
+            <input type="text" id="calc-screen" class="c-screen" readonly value="">
+            <div class="row g-2">
+                <!-- First row: extra functions -->
+                <div class="col-3"><button class="btn-elite btn-func w-100" onclick="cFunc('√')">√</button></div>
+                <div class="col-3"><button class="btn-elite btn-func w-100" onclick="cFunc('x²')">x²</button></div>
+                <div class="col-3"><button class="btn-elite btn-func w-100" onclick="cFunc('%')">%</button></div>
+                <div class="col-3"><button class="btn-elite btn-func w-100" onclick="cFunc('±')">±</button></div>
+                <!-- second row: parentheses and clear/back -->
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="cIn('(')">(</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="cIn(')')">)</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="cClear()">C</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="cBack()">⌫</button></div>
+                <!-- digits and operators -->
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('7')">7</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('8')">8</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('9')">9</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="cIn('/')">÷</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('4')">4</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('5')">5</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('6')">6</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="cIn('*')">×</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('1')">1</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('2')">2</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('3')">3</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="cIn('-')">-</button></div>
+                <!-- Last row: 0, ., =, + (now plus is added) -->
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('0')">0</button></div>
+                <div class="col-3"><button class="btn-elite w-100" onclick="cIn('.')">.</button></div>
+                <div class="col-3"><button class="btn-elite btn-equal w-100" onclick="cSolve()">=</button></div>
+                <div class="col-3"><button class="btn-elite btn-op w-100" onclick="cIn('+')">+</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tools Page -->
+    <div id="p-tools" class="page">
+        <div class="pro-card">
+            <h5>QR Generator (Error Correction H)</h5>
+            <input type="text" id="qr-input" class="form-control mb-2" placeholder="Link ya text डालें">
+            <button class="btn btn-primary w-100 mb-2" onclick="generateQR()">Generate QR</button>
+            <div id="qr-result" class="text-center bg-white p-2 rounded d-none" style="display: flex; justify-content: center;"></div>
+            <small id="qr-warning" class="text-warning mt-1"></small>
+        </div>
+        <div class="pro-card">
+            <h5>Unit Converter</h5>
+            <div class="row g-2">
+                <div class="col-12"><input type="number" id="u-val" class="form-control" placeholder="Value"></div>
+                <div class="col-12">
+                    <select id="u-type" class="form-select">
+                        <option value="km-mi">KM to Miles</option>
+                        <option value="kg-lb">KG to Pounds</option>
+                        <option value="c-f">Celsius to Fahrenheit</option>
+                    </select>
+                </div>
+                <button class="btn btn-info w-100" onclick="convertUnits()">Convert</button>
+                <h4 id="u-res" class="text-center mt-2"></h4>
+            </div>
+        </div>
+        <div class="pro-card text-center">
+            <h5>Pomodoro Focus</h5>
+            <h2 id="pomo-display">25:00</h2>
+            <button class="btn btn-warning" onclick="togglePomo()">Start/Pause</button>
+            <button class="btn btn-secondary" onclick="resetPomo()">Reset</button>
+        </div>
+    </div>
+
+    <!-- Tasks Page -->
+    <div id="p-tasks" class="page">
+        <div class="pro-card">
+            <h5>Tasks Progress</h5>
+            <div class="progress mb-3"><div id="task-progress" class="progress-bar bg-success" style="width: 0%"></div></div>
+            <div class="input-group mb-3">
+                <input type="text" id="todo-input" class="form-control" placeholder="Add task...">
+                <button class="btn btn-primary" onclick="addTodo()">Add</button>
+            </div>
+            <div id="todo-list"></div>
+        </div>
+        <div class="pro-card">
+            <h5>Expense Tracker</h5>
+            <div class="input-group mb-2">
+                <input type="text" id="exp-name" class="form-control" placeholder="Item">
+                <input type="number" id="exp-amt" class="form-control" placeholder="₹">
+                <button class="btn btn-danger" onclick="addExpense()">Add</button>
+            </div>
+            <div id="exp-list" style="max-height: 150px; overflow-y: auto;"></div>
+            <h6 class="mt-2">Total: ₹<span id="exp-total">0</span></h6>
+            <canvas id="expenseChart" style="max-height:200px; width:100%"></canvas>
+        </div>
+        <div class="pro-card">
+            <h5>Task Analytics (Weekly)</h5>
+            <canvas id="taskChart" style="max-height:200px; width:100%"></canvas>
+        </div>
+    </div>
+
+    <!-- Draw Page -->
+    <div id="p-draw" class="page">
+        <div class="pro-card">
+            <h5>Drawing Pad (responsive, touch)</h5>
+            <canvas id="drawing-pad" height="400"></canvas>
+            <div class="btn-group w-100 mt-2">
+                <button class="btn btn-danger" onclick="clearPad()">Clear</button>
+                <button class="btn btn-success" onclick="savePad()">Save Image</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Page -->
+    <div id="p-game" class="page">
+        <div class="pro-card text-center">
+            <h5>Tic-Tac-Toe</h5>
+            <div class="board" id="board">
+                <div class="cell" onclick="makeMove(0)"></div><div class="cell" onclick="makeMove(1)"></div><div class="cell" onclick="makeMove(2)"></div>
+                <div class="cell" onclick="makeMove(3)"></div><div class="cell" onclick="makeMove(4)"></div><div class="cell" onclick="makeMove(5)"></div>
+                <div class="cell" onclick="makeMove(6)"></div><div class="cell" onclick="makeMove(7)"></div><div class="cell" onclick="makeMove(8)"></div>
+            </div>
+            <button class="btn btn-outline-light mt-2" onclick="resetGame()">Reset TicTac</button>
+        </div>
+        <div class="pro-card text-center">
+            <h5>Memory Game</h5>
+            <div class="memory-grid" id="memory-grid"></div>
+            <button class="btn btn-outline-light mt-2" onclick="initMemoryGame()">New Game</button>
+        </div>
+        <div class="pro-card text-center">
+            <h5>🎮 Simon Memory</h5>
+            <div id="simon-status">Press Start</div>
+            <div class="simon-grid">
+                <div id="simon-green" class="simon-btn" onclick="simonClick(0)"></div>
+                <div id="simon-red" class="simon-btn" onclick="simonClick(1)"></div>
+                <div id="simon-yellow" class="simon-btn" onclick="simonClick(2)"></div>
+                <div id="simon-blue" class="simon-btn" onclick="simonClick(3)"></div>
+            </div>
+            <button class="btn btn-outline-light mt-2" onclick="startSimon()">Start Game</button>
+        </div>
+    </div>
+
+    <!-- Apps Page -->
+    <div id="p-apps" class="page">
+        <h4 class="mb-3">Extra Apps</h4>
+        <div class="apps-grid">
+            <div class="app-tile" onclick="fetchWeather()"><i class="fas fa-cloud-sun fa-2x"></i><span>Weather</span><div id="weather-display" class="small mt-1">--°C</div></div>
+            <div class="app-tile" data-bs-toggle="modal" data-bs-target="#notesModal"><i class="fas fa-sticky-note"></i><span>Notes</span></div>
+            <div class="app-tile" onclick="toggleStopwatch()"><i class="fas fa-stopwatch"></i><span>Stopwatch</span><div id="sw-display" class="small mt-1">00:00.0</div></div>
+            <div class="app-tile" onclick="showAgeCalc()"><i class="fas fa-birthday-cake"></i><span>Age calc</span></div>
+            <div class="app-tile" onclick="showBMI()"><i class="fas fa-heartbeat"></i><span>BMI</span></div>
+            <div class="app-tile" onclick="newQuote()"><i class="fas fa-quote-right"></i><span>Quote</span><div id="quote-short" class="small mt-1">tap</div></div>
+        </div>
+        <div id="age-panel" class="pro-card mt-3 d-none"><h6>Age</h6><input type="date" id="birthdate" class="form-control mb-2"><button class="btn btn-sm btn-info" onclick="calcAge()">Calculate</button><p id="age-result" class="mt-2"></p></div>
+        <div id="bmi-panel" class="pro-card mt-3 d-none"><h6>BMI</h6><input type="number" id="weight" class="form-control mb-1" placeholder="Weight (kg)"><input type="number" id="height" class="form-control mb-2" placeholder="Height (cm)"><button class="btn btn-sm btn-success" onclick="calcBMI()">Compute</button><p id="bmi-result" class="mt-2"></p></div>
+    </div>
+
+    <!-- PRO HUB (AI, voice, music, PWA, vault) -->
+    <div id="p-pro" class="page">
+        <h4 class="mb-3">Pro Hub 2026 <span class="badge bg-warning">AI+</span></h4>
+        <div class="pro-card">
+            <div class="d-flex justify-content-between"><h5>Smart AI Chat</h5><span class="badge bg-success">context aware</span></div>
+            <div class="chat-messages" id="chatMessages"><div class="chat-bubble ai">Hello! I'm Priya AI 2026. Ask me anything.</div></div>
+            <div class="input-group"><input type="text" id="chatInput" class="form-control" placeholder="Ask..."><button class="btn btn-primary" onclick="sendChat()">Send</button></div>
+            <small class="text-white-50">I remember last topic!</small>
+        </div>
+        <div class="pro-card">
+            <h5>AI Voice <i class="fas fa-waveform"></i></h5>
+            <button class="btn btn-outline-light" onclick="speakText('Hello from SinghPriya OS 2026')"><i class="fas fa-volume-up"></i> Speak</button>
+            <button class="btn btn-outline-light" onclick="startVoiceRecognition()"><i class="fas fa-microphone"></i> Listen</button>
+            <p id="voiceResult" class="mt-2 small"></p>
+        </div>
+        <div class="pro-card">
+            <h5>Music Player</h5>
+            <audio id="bgMusic" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+            <button class="btn btn-outline-light" onclick="toggleMusic()"><i class="fas fa-play"></i> Play/Pause</button>
+            <input type="range" min="0" max="1" step="0.1" onchange="setMusicVolume(this.value)" class="w-100 mt-2">
+        </div>
+        <div class="pro-card">
+            <h5>PWA Install & Notifications</h5>
+            <button class="btn btn-outline-light" id="installPwaBtn" onclick="installPWA()" disabled><i class="fab fa-google-play"></i> Install App</button>
+            <button class="btn btn-outline-light" onclick="sendNotification()"><i class="fas fa-bell"></i> Test Notify</button>
+        </div>
+        <div class="pro-card">
+            <h5>🔐 Encrypted Password Vault</h5>
+            <div class="input-group mb-2">
+                <input type="text" id="vault-site" class="form-control" placeholder="Site">
+                <input type="text" id="vault-pass" class="form-control" placeholder="Password">
+                <button class="btn btn-warning" onclick="saveVault()">Save</button>
+            </div>
+            <div id="vault-list"></div>
+            <small class="text-info">AES‑256 like (mock encrypted)</small>
+        </div>
+        <div class="pro-card">
+            <h5>Expense Chart</h5>
+            <canvas id="expenseChartPro" style="height:200px; width:100%"></canvas>
+        </div>
+        <div class="pro-card text-center">
+            <h5>App Install System (mock)</h5>
+            <button class="btn btn-sm btn-info" onclick="mockInstallApp('Sticky Notes')">📌 Install Sticky</button>
+            <button class="btn btn-sm btn-info" onclick="mockInstallApp('Weather Pro')">⛅ Install Weather</button>
+            <small class="d-block mt-2">Installed: <span id="mockInstalled">none</span></small>
+        </div>
+    </div>
+</div>
+
+<!-- Navigation Dock -->
+<div class="nav-dock">
+    <button class="nav-link active" onclick="showPage('home', event)"><i class="fas fa-home"></i>Home</button>
+    <button class="nav-link" onclick="showPage('calc', event)"><i class="fas fa-calculator"></i>Calc</button>
+    <button class="nav-link" onclick="showPage('tools', event)"><i class="fas fa-tools"></i>Tools</button>
+    <button class="nav-link" onclick="showPage('tasks', event)"><i class="fas fa-check-circle"></i>Tasks</button>
+    <button class="nav-link" onclick="showPage('game', event)"><i class="fas fa-gamepad"></i>Game</button>
+    <button class="nav-link" onclick="showPage('apps', event)"><i class="fas fa-grip"></i>Apps</button>
+    <button class="nav-link" onclick="showPage('pro', event)"><i class="fas fa-microchip"></i>Pro</button>
+</div>
+
+<button id="sidebar-toggle-btn" onclick="toggleSidebar()"><i class="fas fa-cog"></i></button>
+
+<div class="sp-sidebar" id="sp-sidebar">
+    <h4>Settings</h4>
+    <hr>
+    <label>OS Name:</label>
+    <input type="text" id="name-input" class="form-control mb-3" onchange="updateName(this.value)">
+    <label>Wallpaper URL:</label>
+    <input type="text" class="form-control mb-3" placeholder="Image URL..." onchange="updateWallpaper(this.value)">
+    <label>Primary Color:</label>
+    <input type="color" id="primary-color" class="form-control mb-3" value="#00f2fe" onchange="updatePrimaryColor(this.value)">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <span>Dark / Light</span>
+        <span class="ios-switch" id="themeSwitch" onclick="toggleTheme()"></span>
+    </div>
+    <button class="btn btn-dark w-100 mb-2" onclick="location.reload()">Refresh</button>
+    <button class="btn btn-danger w-100" onclick="toggleSidebar()">Close</button>
+</div>
+
+<!-- Notes Modal -->
+<div class="modal fade" id="notesModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header"><h5 class="modal-title">Notes</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <textarea id="note-content" class="form-control bg-secondary text-white" rows="5"></textarea>
+        <div class="mt-2 d-flex gap-2"><button class="btn btn-primary flex-fill" onclick="saveNote()">Save</button><button class="btn btn-outline-light flex-fill" onclick="loadNote()">Load</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // ---------- GLOBAL VARIABLES ----------
+    let deferredPrompt; // PWA install
+    let chartInstance = null, chartProInstance = null, taskChartInstance = null;
+    let musicPlaying = false;
+    const musicAudio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+    musicAudio.loop = true;
+
+    // Todos & Expenses
+    let todos = JSON.parse(localStorage.getItem('my_todos') || '[]');
+    let expenses = JSON.parse(localStorage.getItem('my_expenses') || '[]');
+
+    // Pomodoro
+    let pomoTime = 1500, pomoInterval, pomoRunning = false;
+
+    // Stopwatch
+    let swTime = 0, swInterval = null;
+
+    // Drawing
+    let canvas, ctx, drawing = false;
+
+    // Tic Tac Toe
+    let board = ['','','','','','','','',''];
+    let currentPlayer = 'X';
+    let gameActive = true;
+
+    // Memory game
+    let memoryCards = [];
+    let flipped = [];
+    let matched = [];
+
+    // Simon game
+    let simonSequence = [];
+    let simonPlayerIndex = 0;
+    let simonActive = false;
+    const simonColors = ['#simon-green', '#simon-red', '#simon-yellow', '#simon-blue'];
+
+    // Password vault (mock encryption)
+    let vault = JSON.parse(localStorage.getItem('password_vault') || '[]');
+
+    // AI chat memory
+    let lastTopic = '';
+
+    let voiceFeedbackEnabled = false;
+
+    // ---------- INIT ----------
+    function init() {
+        setTimeout(() => {
+            document.getElementById('loader').style.opacity = '0';
+            setTimeout(() => document.getElementById('loader').style.display = 'none', 500);
+        }, 1000);
+        updateClock(); setInterval(updateClock, 1000);
+        updateBattery(); getStorage(); 
+        initDrawing(); 
+        loadSettings(); 
+        renderTodos(); 
+        renderExpenses();
+        initMemoryGame(); 
+        fetchWeather(); 
+        loadNote(); 
+        setupCharts();      
+        setupPWA();
+        window.addEventListener('resize', resizeDrawingCanvas);
+        renderVault();
+
+        // Check for first visit (onboarding)
+        if (!localStorage.getItem('onboarding_seen')) {
+            document.getElementById('onboarding').style.display = 'flex';
+            localStorage.setItem('onboarding_seen', 'true');
+        }
+
+        // Service Worker Registration (moved here from resizeDrawingCanvas)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(() => console.log("Service Worker Registered"))
+                .catch(err => console.log("SW Registration Failed", err));
+        }
+    }
+
+    function closeOnboarding() {
+        document.getElementById('onboarding').style.display = 'none';
+    }
+
+    // ---------- PAGE NAVIGATION ----------
+    function showPage(pageId, event) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('p-'+pageId).classList.add('active');
+        if (event) {
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+        // hide extra panels
+        document.getElementById('age-panel')?.classList.add('d-none');
+        document.getElementById('bmi-panel')?.classList.add('d-none');
+        if (pageId === 'tasks' || pageId === 'pro') updateCharts();
+        if (pageId === 'tasks') updateTaskChart();
+        // resize drawing canvas when draw page is shown
+        if (pageId === 'draw') {
+            setTimeout(resizeDrawingCanvas, 50); // slight delay to ensure layout
+        }
+    }
+
+    // ---------- THEME & COLOR ----------
+    function toggleTheme() {
+        document.body.classList.toggle('light-mode');
+        document.getElementById('themeSwitch').classList.toggle('active');
+    }
+    function updatePrimaryColor(color) {
+        document.documentElement.style.setProperty('--primary', color);
+    }
+
+    // ---------- MUSIC ----------
+    function toggleMusic() {
+        if(musicPlaying) { musicAudio.pause(); } else { musicAudio.play(); }
+        musicPlaying = !musicPlaying;
+        document.getElementById('music-icon').className = musicPlaying ? 'fas fa-music text-warning' : 'fas fa-music';
+    }
+    function setMusicVolume(v) { musicAudio.volume = v; }
+
+    // ---------- PWA ----------
+    function setupPWA() {
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault(); deferredPrompt = e;
+            document.getElementById('installPwaBtn').disabled = false;
+        });
+    }
+    function installPWA() {
+        if(!deferredPrompt) return alert('App already installed or not supported.');
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => deferredPrompt = null);
+    }
+
+    // ---------- NOTIFICATION ----------
+    function sendNotification() {
+        if(Notification.permission !== 'granted') {
+            Notification.requestPermission().then(perm => {
+                if(perm==='granted') new Notification('SinghPriya OS', { body: 'Hello from Pro Hub!', icon: 'https://via.placeholder.com/64' });
+            });
+        } else {
+            new Notification('SinghPriya OS', { body: 'This is a test notification.', icon: 'https://via.placeholder.com/64' });
+        }
+    }
+
+    // ---------- AI CHAT (smart with memory) ----------
+    function sendChat() {
+        let input = document.getElementById('chatInput').value;
+        if(!input) return;
+        let msgBox = document.getElementById('chatMessages');
+        msgBox.innerHTML += `<div class="chat-bubble user">${input}</div>`;
+        let reply = getSmartAIResponse(input);
+        setTimeout(() => {
+            msgBox.innerHTML += `<div class="chat-bubble ai">${reply}</div>`;
+            if (voiceFeedbackEnabled) speakText(reply);
+        }, 300);
+        document.getElementById('chatInput').value = '';
+        msgBox.scrollTop = msgBox.scrollHeight;
+    }
+
+    function getSmartAIResponse(q) {
+        q = q.toLowerCase();
+        if (q.includes('hello') || q.includes('hi')) {
+            lastTopic = 'greeting';
+            return 'Namaste! How can I assist you today?';
+        }
+        if (q.includes('weather')) {
+            lastTopic = 'weather';
+            return 'The weather is sunny with a chance of innovation! 28°C in your area.';
+        }
+        if (q.includes('time')) {
+            return 'Current time is ' + new Date().toLocaleTimeString();
+        }
+        if (q.includes('name')) {
+            return 'I am Priya AI 2026, your intelligent assistant.';
+        }
+        if (q.includes('task') || q.includes('todo')) {
+            let pending = todos.filter(t => !t.done).length;
+            return `You have ${pending} pending tasks. Keep going!`;
+        }
+        if (q.includes('expense') || q.includes('money')) {
+            let total = expenses.reduce((s,e) => s+e.amt, 0);
+            return `Your total expenses are ₹${total}.`;
+        }
+        if (q.includes('joke')) {
+            return 'Why do programmers prefer dark mode? Because light attracts bugs! 😄';
+        }
+        if (q.includes('how are you')) {
+            return 'I am operating at peak efficiency, thank you!';
+        }
+        if (lastTopic === 'weather' && (q.includes('tomorrow') || q.includes('next'))) {
+            return 'Tomorrow will be similar, maybe a bit cooler.';
+        }
+        lastTopic = 'general';
+        return 'I am learning new things every day. Ask me about weather, time, tasks, or expenses!';
+    }
+
+    // ---------- VOICE ----------
+    function speakText(t) {
+        if('speechSynthesis' in window) {
+            let utter = new SpeechSynthesisUtterance(t);
+            speechSynthesis.speak(utter);
+        } else alert('Text-to-speech not supported');
+    }
+    function startVoiceRecognition() {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            alert('Voice recognition not supported in this browser.');
+            return;
+        }
+        let rec = new SpeechRecognition();
+        rec.lang = 'hi-IN';
+        rec.onresult = (e) => {
+            let transcript = e.results[0][0].transcript;
+            document.getElementById('voiceResult').innerText = 'You said: ' + transcript;
+            document.getElementById('chatInput').value = transcript;
+            sendChat();
+        };
+        rec.onerror = (e) => {
+            document.getElementById('voiceResult').innerText = 'Error: ' + e.error;
+            if (e.error === 'not-allowed') alert('Microphone permission denied. Please enable access.');
+        };
+        rec.start();
+    }
+
+    // ---------- CHARTS ----------
+    function setupCharts() {
+        const expenseCanvas = document.getElementById('expenseChart');
+        const ctx = expenseCanvas ? expenseCanvas.getContext('2d') : null;
+        const expenseProCanvas = document.getElementById('expenseChartPro');
+        const ctxPro = expenseProCanvas ? expenseProCanvas.getContext('2d') : null;
+        const taskCanvas = document.getElementById('taskChart');
+        const taskCtx = taskCanvas ? taskCanvas.getContext('2d') : null;
+
+        if (ctx) {
+            if (chartInstance) chartInstance.destroy();
+            chartInstance = new Chart(ctx, { type: 'doughnut', data: { labels: [], datasets: [{ data: [], backgroundColor: ['#00f2fe','#4facfe','#e73c7e','#ee7752'] }] } });
+        }
+        if (ctxPro) {
+            if (chartProInstance) chartProInstance.destroy();
+            chartProInstance = new Chart(ctxPro, { type: 'bar', data: { labels: [], datasets: [{ label: 'Expenses', data: [], backgroundColor: '#00f2fe' }] } });
+        }
+        updateCharts();
+
+        if (taskCtx) {
+            if (taskChartInstance) taskChartInstance.destroy();
+            taskChartInstance = new Chart(taskCtx, { type: 'line', data: { labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], datasets: [{ label: 'Tasks Done', data: [0,0,0,0,0,0,0], borderColor: '#00f2fe', fill: false }] } });
+        }
+        updateTaskChart();
+    }
+    function updateCharts() {
+        if(!expenses) return;
+        let names = expenses.map(e => e.name);
+        let amounts = expenses.map(e => e.amt);
+        if(chartInstance) { chartInstance.data.labels = names; chartInstance.data.datasets[0].data = amounts; chartInstance.update(); }
+        if(chartProInstance) { chartProInstance.data.labels = names; chartProInstance.data.datasets[0].data = amounts; chartProInstance.update(); }
+    }
+    function updateTaskChart() {
+        let taskHistory = JSON.parse(localStorage.getItem('task_history') || '[0,0,0,0,0,0,0]');
+        let today = new Date().getDay();
+        let dayIndex = today === 0 ? 6 : today - 1;
+        let doneToday = todos.filter(t => t.done).length;
+        taskHistory[dayIndex] = doneToday;
+        localStorage.setItem('task_history', JSON.stringify(taskHistory));
+        if (taskChartInstance) {
+            taskChartInstance.data.datasets[0].data = taskHistory;
+            taskChartInstance.update();
+        }
+    }
+
+    // ---------- SIMON GAME ----------
+    function startSimon() {
+        simonSequence = [];
+        simonPlayerIndex = 0;
+        simonActive = true;
+        document.getElementById('simon-status').innerText = 'Watch...';
+        nextSimonRound();
+    }
+    function nextSimonRound() {
+        simonPlayerIndex = 0;
+        simonSequence.push(Math.floor(Math.random() * 4));
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i >= simonSequence.length) {
+                clearInterval(interval);
+                document.getElementById('simon-status').innerText = 'Your turn!';
+                return;
+            }
+            lightUp(simonSequence[i]);
+            i++;
+        }, 600);
+    }
+    function lightUp(colorIndex) {
+        let btn = document.querySelector(simonColors[colorIndex]);
+        btn.classList.add('active');
+        setTimeout(() => btn.classList.remove('active'), 300);
+    }
+    function simonClick(colorIndex) {
+        if (!simonActive) return;
+        if (colorIndex !== simonSequence[simonPlayerIndex]) {
+            document.getElementById('simon-status').innerText = 'Game Over! Score: ' + simonSequence.length;
+            simonActive = false;
+            return;
+        }
+        simonPlayerIndex++;
+        if (simonPlayerIndex === simonSequence.length) {
+            document.getElementById('simon-status').innerText = 'Correct! Next round...';
+            setTimeout(() => nextSimonRound(), 800);
+        }
+    }
+
+    // ---------- PASSWORD VAULT (mock encryption) ----------
+    function encrypt(text) {
+        let key = 0x5A;
+        let result = '';
+        for (let i = 0; i < text.length; i++) {
+            result += String.fromCharCode(text.charCodeAt(i) ^ key);
+        }
+        return btoa(result);
+    }
+    function decrypt(encoded) {
+        let key = 0x5A;
+        let text = atob(encoded);
+        let result = '';
+        for (let i = 0; i < text.length; i++) {
+            result += String.fromCharCode(text.charCodeAt(i) ^ key);
+        }
+        return result;
+    }
+    function saveVault() {
+        let site = document.getElementById('vault-site').value;
+        let pass = document.getElementById('vault-pass').value;
+        if (!site || !pass) return;
+        let encryptedPass = encrypt(pass);
+        vault.push({ site, pass: encryptedPass });
+        localStorage.setItem('password_vault', JSON.stringify(vault));
+        document.getElementById('vault-site').value = '';
+        document.getElementById('vault-pass').value = '';
+        renderVault();
+    }
+    function deleteVault(i) {
+        vault.splice(i, 1);
+        localStorage.setItem('password_vault', JSON.stringify(vault));
+        renderVault();
+    }
+    function renderVault() {
+        let list = document.getElementById('vault-list');
+        list.innerHTML = vault.map((v, i) => {
+            let decrypted = decrypt(v.pass);
+            return `<div class="vault-item"><span>${v.site}: ${decrypted}</span><i class="fas fa-trash text-danger" onclick="deleteVault(${i})"></i></div>`;
+        }).join('');
+    }
+
+    // ---------- ENHANCED CALCULATOR FUNCTIONS ----------
+    function cIn(v) { document.getElementById('calc-screen').value += v; }
+    function cClear() { document.getElementById('calc-screen').value = ""; }
+    function cBack() {
+        let s = document.getElementById('calc-screen').value;
+        document.getElementById('calc-screen').value = s.slice(0, -1);
+    }
+    function cFunc(op) {
+        let screen = document.getElementById('calc-screen');
+        let val = parseFloat(screen.value) || 0;
+        if (op === '√') screen.value = Math.sqrt(val);
+        else if (op === 'x²') screen.value = val * val;
+        else if (op === '%') screen.value = val / 100;
+        else if (op === '±') screen.value = -val;
+    }
+    function cSolve() {
+        let expr = document.getElementById('calc-screen').value;
+        // Replace × and ÷ with * and /
+        expr = expr.replace(/×/g, '*').replace(/÷/g, '/');
+        if (!/^[0-9+\-*/().\s]+$/.test(expr)) {
+            document.getElementById('calc-screen').value = 'Error';
+            return;
+        }
+        try {
+            let result = new Function('return ' + expr)();
+            document.getElementById('calc-screen').value = result;
+        } catch(e) { 
+            document.getElementById('calc-screen').value = 'Error';
+        }
+    }
+
+    // ---------- ORIGINAL FUNCTIONS (with fixes) ----------
+    function updateClock() { const now = new Date(); document.getElementById('clock').innerText = now.toLocaleTimeString(); document.getElementById('full-date').innerText = now.toDateString(); }
+    function updateBattery() { if(navigator.getBattery) navigator.getBattery().then(b => { const u = () => document.getElementById('batt-text').innerText = Math.floor(b.level*100)+"%"; b.addEventListener('levelchange',u); u(); }); }
+    function getStorage() {
+        if('storage' in navigator && 'estimate' in navigator.storage) {
+            navigator.storage.estimate().then(e => {
+                let used = e.usage / (1024*1024);
+                let quota = e.quota / (1024*1024);
+                let usedStr = used > 1024 ? (used/1024).toFixed(2)+' GB' : used.toFixed(1)+' MB';
+                let quotaStr = quota > 1024 ? (quota/1024).toFixed(2)+' GB' : quota.toFixed(1)+' MB';
+                document.getElementById('storage-info').innerText = `Storage: ${usedStr} / ${quotaStr}`;
+            });
+        }
+    }
+    function toggleSidebar() { document.getElementById('sp-sidebar').classList.toggle('active'); }
+    function loadSettings() { const name = localStorage.getItem('os-name') || "SinghPriya OS 2026"; document.getElementById('os-title').innerHTML = `<i class="fas fa-bolt text-warning"></i> ${name}`; document.getElementById('loader-text').innerText = name.toUpperCase(); const wall = localStorage.getItem('os-wallpaper'); if(wall) document.body.style.background = `url(${wall}) center/cover fixed`; }
+    function updateName(val) { localStorage.setItem('os-name', val); loadSettings(); }
+    function updateWallpaper(val) { localStorage.setItem('os-wallpaper', val); loadSettings(); }
+    function genPassword() { const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*"; let pass = ""; for(let i=0; i<12; i++) pass += chars.charAt(Math.floor(Math.random() * chars.length)); alert("Strong Password: " + pass); }
+    function generateQR() {
+        const input = document.getElementById('qr-input').value;
+        const res = document.getElementById('qr-result');
+        res.innerHTML = ""; 
+        const warning = document.getElementById('qr-warning');
+        if(input) {
+            if (input.length > 200) {
+                warning.innerText = 'Text is long, QR may become dense. Try shorter text.';
+            } else warning.innerText = '';
+            res.classList.remove('d-none');
+            new QRCode(res, {
+                text: input,
+                width: 256,
+                height: 256,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        } else {
+            alert('Please enter some text or URL');
+        }
+    }
+    function convertUnits() { const val = parseFloat(document.getElementById('u-val').value); const type = document.getElementById('u-type').value; let res = 0; if(type === "km-mi") res = (val * 0.621).toFixed(2) + " Miles"; else if(type === "kg-lb") res = (val * 2.204).toFixed(2) + " Lbs"; else if(type === "c-f") res = ((val * 9/5) + 32).toFixed(2) + " °F"; document.getElementById('u-res').innerText = res; }
+    function togglePomo() { if(!pomoRunning) { pomoRunning = true; pomoInterval = setInterval(() => { pomoTime--; let m = Math.floor(pomoTime/60), s = pomoTime%60; document.getElementById('pomo-display').innerText = `${m}:${s < 10 ? '0'+s : s}`; if(pomoTime <= 0) { clearInterval(pomoInterval); alert("Focus Time Over!"); resetPomo(); } }, 1000); } else { clearInterval(pomoInterval); pomoRunning = false; } }
+    function resetPomo() { clearInterval(pomoInterval); pomoTime = 1500; document.getElementById('pomo-display').innerText = "25:00"; pomoRunning = false; }
+    
+    // Drawing (with touch support)
+    function initDrawing() {
+        canvas = document.getElementById('drawing-pad');
+        if (!canvas) return; // safety check
+        ctx = canvas.getContext('2d');
+        resizeDrawingCanvas();
+        const getPos = (e) => {
+            const rect = canvas.getBoundingClientRect();
+            let clientX, clientY;
+            if (e.touches) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
+        };
+        const start = (e) => { e.preventDefault(); drawing = true; ctx.beginPath(); const p = getPos(e); ctx.moveTo(p.x, p.y); };
+        const end = () => drawing = false;
+        const draw = (e) => {
+            if(!drawing) return;
+            e.preventDefault();
+            const p = getPos(e);
+            ctx.lineWidth = 3; ctx.lineCap = "round"; ctx.strokeStyle = "#000";
+            ctx.lineTo(p.x, p.y); ctx.stroke();
+        };
+        canvas.addEventListener('mousedown', start); canvas.addEventListener('mousemove', draw); window.addEventListener('mouseup', end);
+        canvas.addEventListener('touchstart', start, { passive: false }); canvas.addEventListener('touchmove', draw, { passive: false }); canvas.addEventListener('touchend', end);
+    }
+    function resizeDrawingCanvas() {
+        if (!canvas) return;
+        let imgData = null;
+        if (canvas.width > 0 && canvas.height > 0) {
+            imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        }
+        canvas.width = canvas.offsetWidth;
+        canvas.height = 400;
+        if (imgData) ctx.putImageData(imgData, 0, 0);
+    }
+    function clearPad() { ctx.clearRect(0,0,canvas.width,canvas.height); }
+    function savePad() { const link = document.createElement('a'); link.download = 'sketch.png'; link.href = canvas.toDataURL(); link.click(); }
+    
+    // Todos
+    function addTodo() { const val = document.getElementById('todo-input').value; if(!val) return; todos.push({ text: val, done: false }); localStorage.setItem('my_todos', JSON.stringify(todos)); document.getElementById('todo-input').value = ""; renderTodos(); updateTaskChart(); }
+    function toggleTodo(i) { todos[i].done = !todos[i].done; localStorage.setItem('my_todos', JSON.stringify(todos)); renderTodos(); updateTaskChart(); }
+    function delTodo(i) { todos.splice(i,1); localStorage.setItem('my_todos', JSON.stringify(todos)); renderTodos(); updateTaskChart(); }
+    function renderTodos() { const list = document.getElementById('todo-list'); list.innerHTML = todos.map((t, i) => `<div class="todo-item ${t.done ? 'done' : ''}"><span onclick="toggleTodo(${i})">${t.text}</span><i class="fas fa-trash text-danger" onclick="delTodo(${i})"></i></div>`).join(''); const doneCount = todos.filter(t => t.done).length; document.getElementById('task-progress').style.width = (todos.length ? (doneCount/todos.length)*100 : 0) + "%"; }
+    
+    // Expenses
+    function addExpense() { let name = document.getElementById('exp-name').value; let amt = parseFloat(document.getElementById('exp-amt').value); if(!name || isNaN(amt)) return; expenses.push({ name, amt }); localStorage.setItem('my_expenses', JSON.stringify(expenses)); document.getElementById('exp-name').value = ""; document.getElementById('exp-amt').value = ""; renderExpenses(); updateCharts(); }
+    function delExpense(i) { expenses.splice(i,1); localStorage.setItem('my_expenses', JSON.stringify(expenses)); renderExpenses(); updateCharts(); }
+    function renderExpenses() { let list = document.getElementById('exp-list'); list.innerHTML = expenses.map((e,i) => `<div class="d-flex justify-content-between align-items-center mb-1"><span>${e.name}: ₹${e.amt}</span><i class="fas fa-trash text-danger" onclick="delExpense(${i})"></i></div>`).join(''); let total = expenses.reduce((s,e) => s+e.amt, 0); document.getElementById('exp-total').innerText = total; }
+    
+    // Tic Tac Toe
+    function makeMove(idx) { if(!gameActive || board[idx]!=='') return; board[idx] = currentPlayer; document.querySelectorAll('.cell')[idx].innerText = currentPlayer; if(checkWinner()) { alert(currentPlayer + ' wins!'); gameActive = false; } else if(board.every(c=>c!=='')) { alert('Draw!'); gameActive = false; } else { currentPlayer = currentPlayer==='X' ? 'O' : 'X'; } }
+    function checkWinner() { const win = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]; return win.some(pat => pat.every(idx => board[idx]===currentPlayer)); }
+    function resetGame() { board = ['','','','','','','','','']; currentPlayer = 'X'; gameActive = true; document.querySelectorAll('.cell').forEach(c => c.innerText = ''); }
+    
+    // Memory Game
+    function initMemoryGame() {
+        let symbols = ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼'];
+        let cards = [...symbols, ...symbols];
+        cards.sort(() => Math.random() - 0.5);
+        memoryCards = cards;
+        flipped = []; matched = [];
+        let html = '';
+        cards.forEach((c,i) => html += `<div class="memory-card" onclick="flipCard(${i})" id="card-${i}">❓</div>`);
+        document.getElementById('memory-grid').innerHTML = html;
+    }
+    function flipCard(idx) {
+        if(flipped.length===2 || matched.includes(idx) || flipped.includes(idx)) return;
+        document.getElementById(`card-${idx}`).innerText = memoryCards[idx];
+        flipped.push(idx);
+        if(flipped.length===2) {
+            if(memoryCards[flipped[0]] === memoryCards[flipped[1]]) {
+                matched.push(...flipped); flipped = [];
+                if(matched.length===memoryCards.length) alert('You won!');
+            } else {
+                setTimeout(() => {
+                    flipped.forEach(i => document.getElementById(`card-${i}`).innerText = '❓');
+                    flipped = [];
+                }, 700);
+            }
+        }
+    }
+    
+    // Extra Apps
+    function fetchWeather() { const mockTemp = (Math.random() * 15 + 20).toFixed(1); document.getElementById('weather-display').innerHTML = `${mockTemp}°C <i class="fas fa-sync-alt" style="font-size:0.7rem" onclick="fetchWeather()"></i>`; }
+    function saveNote() { localStorage.setItem('my_note', document.getElementById('note-content').value); alert('Note saved'); }
+    function loadNote() { document.getElementById('note-content').value = localStorage.getItem('my_note') || ''; }
+    function toggleStopwatch() { if(swInterval) { clearInterval(swInterval); swInterval = null; } else { swInterval = setInterval(() => { swTime += 0.1; let sec = Math.floor(swTime); let tenth = Math.floor((swTime - sec)*10); document.getElementById('sw-display').innerText = `${sec}:${tenth<10?'0'+tenth:tenth}`; }, 100); } }
+    function showAgeCalc() { document.getElementById('age-panel').classList.toggle('d-none'); document.getElementById('bmi-panel').classList.add('d-none'); }
+    function calcAge() { let bd = new Date(document.getElementById('birthdate').value); if(isNaN(bd)) return alert('Enter valid date'); let diff = Date.now() - bd.getTime(); let ageDate = new Date(diff); let years = Math.abs(ageDate.getUTCFullYear() - 1970); document.getElementById('age-result').innerText = `Age: ${years} years`; }
+    function showBMI() { document.getElementById('bmi-panel').classList.toggle('d-none'); document.getElementById('age-panel').classList.add('d-none'); }
+    function calcBMI() { let w = parseFloat(document.getElementById('weight').value); let h = parseFloat(document.getElementById('height').value)/100; if(!w || !h) return alert('Enter values'); let bmi = (w/(h*h)).toFixed(1); let cat = bmi<18.5?'Underweight': bmi<25?'Normal': bmi<30?'Overweight':'Obese'; document.getElementById('bmi-result').innerText = `BMI: ${bmi} (${cat})`; }
+    const quotes = ["Code is poetry","Stay hungry","Think different","Less is more","Innovation","Dream big","Simplicity","Focus","2026 is here!","AI is everywhere"];
+    function newQuote() { document.getElementById('quote-short').innerText = quotes[Math.floor(Math.random() * quotes.length)]; }
+    function mockInstallApp(appName) { document.getElementById('mockInstalled').innerText = appName + ' installed (demo)'; sendNotification('App installed: '+appName); }
+</script>
+</body>
+</html>
