@@ -231,6 +231,61 @@
     </style>
 </head>
 <body>  <!-- onload hata diya -->
+    <nav style="position: fixed; top: 0; left: 0; width: 100%; display: flex; align-items: center; justify-content: space-around; background: rgba(15, 15, 15, 0.98); padding: 12px 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,255,204,0.2); backdrop-filter: blur(10px); border-bottom: 1px solid #333;">
+  
+  <a href="hello.html" style="color: #00ffcc; text-decoration: none; font-family: sans-serif; font-weight: bold; font-size: 16px;">Home</a>
+
+  <div style="display: flex; gap: 15px;">
+    <a href="https://wa.me/917718906857" target="_blank" class="nav-icon">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="30">
+    </a>
+    <a href="https://t.me/bhuimharniteshbhuimhar2" target="_blank" class="nav-icon">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="30">
+    </a>
+    <a href="https://www.instagram.com/nitesh_jord?igsh=bHJycWg0cWVscDN6" target="_blank" class="nav-icon">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="30">
+    </a>
+    <a href="https://www.facebook.com/share/1DXcknSgch/" target="_blank" class="nav-icon">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg" width="30">
+    </a>
+  </div>
+
+  <button id="installBtn" style="background: #00ffcc; color: #000; border: none; padding: 6px 12px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 14px;">Install App</button>
+
+  <style>
+    .nav-icon { transition: transform 0.3s; }
+    .nav-icon:hover { transform: scale(1.2) rotate(5deg); }
+    #installBtn:active { transform: scale(0.9); }
+  </style>
+</nav>
+
+<div style="margin-top: 80px;"></div>
+
+<script>
+  // PWA Install Logic
+  let deferredPrompt;
+  const installBtn = document.getElementById('installBtn');
+  installBtn.style.display = 'none'; // शुरुआत में छिपा रहेगा
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'block'; // इंस्टॉल उपलब्ध होने पर दिखेगा
+  });
+
+  installBtn.addEventListener('click', () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        }
+        deferredPrompt = null;
+      });
+    }
+  });
+</script>
+    
 
 <!-- Particle Canvas -->
 <canvas id="particle-canvas"></canvas>
