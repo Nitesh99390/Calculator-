@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://calculator-taupe-two-43.vercel.app/sitemap.xml
-
