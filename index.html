@@ -23,7 +23,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', -apple-system, sans-serif;
-            cursor: none; /* Hide default cursor */
+            cursor: none; /* Hide default cursor for custom feel */
         }
 
         body {
@@ -69,14 +69,14 @@
             transition: opacity 1s ease-out;
         }
 
-        /* The 3D Canvas */
+        /* --- The 3D Canvas Background --- */
         #canvas-container {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: 0; pointer-events: none; 
         }
 
-        /* UI overlay */
+        /* --- UI Overlay --- */
         #content { position: relative; z-index: 10; }
 
         nav {
@@ -98,7 +98,7 @@
             position: relative;
         }
 
-        /* Premium Glassmorphism Cards */
+        /* --- Premium Glassmorphism Cards --- */
         .text-content {
             max-width: 650px;
             background: var(--glass);
@@ -108,8 +108,7 @@
             border-radius: 24px;
             border: 1px solid rgba(255,255,255,0.08);
             box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-            /* Hide initially for GSAP reveal */
-            opacity: 0;
+            opacity: 0; /* Hidden initially for GSAP reveal */
             transform: translateY(50px);
         }
 
@@ -121,12 +120,10 @@
         }
 
         .section-title { font-size: 3rem; font-weight: 700; margin-bottom: 20px; }
-
         p { font-size: 1.2rem; color: #b3b3b3; line-height: 1.7; margin-bottom: 30px; }
-
         .social-links { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 20px; }
 
-        /* Advanced Buttons */
+        /* --- Advanced Buttons --- */
         .btn {
             display: inline-block; padding: 15px 35px;
             background: transparent; color: white;
@@ -158,6 +155,7 @@
         #section-3 { justify-content: center; text-align: center; }
         #section-3 .text-content { max-width: 800px; display: flex; flex-direction: column; align-items: center; }
 
+        /* --- Responsive Design --- */
         @media (max-width: 768px) {
             .hero-title { font-size: 3rem; }
             .section-title { font-size: 2.2rem; }
@@ -218,55 +216,55 @@
         const cursorDot = document.getElementById('cursor-dot');
         const cursorOutline = document.getElementById('cursor-outline');
         
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-            
-            // Smooth follow for outline
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
-        });
-
-        // Add hover effect to links
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                cursorOutline.style.width = '60px';
-                cursorOutline.style.height = '60px';
-                cursorOutline.style.backgroundColor = 'rgba(99, 102, 241, 0.1)';
+        // Only run cursor logic if not on mobile
+        if (window.innerWidth > 768) {
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+                
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+                
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
             });
-            link.addEventListener('mouseleave', () => {
-                cursorOutline.style.width = '40px';
-                cursorOutline.style.height = '40px';
-                cursorOutline.style.backgroundColor = 'transparent';
-            });
-        });
 
-        // --- 2. ADVANCED THREE.JS WITH MOUSE PARALLAX ---
+            document.querySelectorAll('a').forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    cursorOutline.style.width = '60px';
+                    cursorOutline.style.height = '60px';
+                    cursorOutline.style.backgroundColor = 'rgba(99, 102, 241, 0.1)';
+                });
+                link.addEventListener('mouseleave', () => {
+                    cursorOutline.style.width = '40px';
+                    cursorOutline.style.height = '40px';
+                    cursorOutline.style.backgroundColor = 'transparent';
+                });
+            });
+        }
+
+        // --- 2. OPTIMIZED THREE.JS ENGINE ---
         const container = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limits pixel ratio for performance
         container.appendChild(renderer.domElement);
 
-        // Group to hold particles (so we can rotate it with mouse independently of camera)
         const particleGroup = new THREE.Group();
         scene.add(particleGroup);
 
         const geometry = new THREE.BufferGeometry();
-        const particlesCount = 12000; // Increased density
+        // Optimized count: 8000 is perfect for performance while keeping the dense look
+        const particlesCount = 8000; 
         const posArray = new Float32Array(particlesCount * 3);
         const colorsArray = new Float32Array(particlesCount * 3);
 
         for(let i = 0; i < particlesCount * 3; i+=3) {
-            // Create a more defined spherical cluster rather than a box
             const radius = Math.random() * 8;
             const theta = Math.random() * 2 * Math.PI;
             const phi = Math.acos(Math.random() * 2 - 1);
@@ -288,7 +286,8 @@
             vertexColors: true,
             blending: THREE.AdditiveBlending,
             transparent: true,
-            opacity: 0.9
+            opacity: 0.9,
+            depthWrite: false // Prevents particle sorting glitches
         });
 
         const particleMesh = new THREE.Points(geometry, material);
@@ -310,28 +309,26 @@
             mouseY = (event.clientY - windowHalfY);
         });
 
+        // The Smooth Animation Loop
         const clock = new THREE.Clock();
         function animate() {
             requestAnimationFrame(animate);
             const elapsedTime = clock.getElapsedTime();
 
-            // Core idle rotation
-            particleMesh.rotation.y = elapsedTime * 0.08;
-            particleMesh.rotation.x = elapsedTime * 0.04;
+            // 1. Core idle rotation (Smooth & Constant)
+            particleMesh.rotation.y = elapsedTime * 0.05;
+            particleMesh.rotation.x = elapsedTime * 0.02;
 
-            // Mouse interaction physics (easing)
+            // 2. Mouse interaction physics (Smooth Dampening)
             targetX = mouseX * 0.001;
             targetY = mouseY * 0.001;
             particleGroup.rotation.y += 0.05 * (targetX - particleGroup.rotation.y);
             particleGroup.rotation.x += 0.05 * (targetY - particleGroup.rotation.x);
 
-            // Breathing effect
-            const positions = particleMesh.geometry.attributes.position.array;
-            for(let i = 0; i < particlesCount; i++) {
-                const i3 = i * 3;
-                positions[i3 + 1] += Math.sin(elapsedTime * 2 + positions[i3]) * 0.002; 
-            }
-            particleMesh.geometry.attributes.position.needsUpdate = true;
+            // 3. Hardware Accelerated Breathing Effect
+            // CPU loop replaced with GPU mesh scaling - fixes the visual glitch and lag
+            const pulse = 1 + Math.sin(elapsedTime * 1.5) * 0.03;
+            particleMesh.scale.set(pulse, pulse, pulse);
 
             renderer.render(scene, camera);
         }
@@ -339,15 +336,15 @@
         // --- 3. GSAP SCROLL & REVEAL ANIMATIONS ---
         gsap.registerPlugin(ScrollTrigger);
 
-        // Remove Preloader when ready
+        // Preloader & Init
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             preloader.style.opacity = '0';
             setTimeout(() => { preloader.style.display = 'none'; }, 1000);
             
-            animate(); // Start 3D
+            animate(); 
             
-            // Initial Entry Animation for Section 1
+            // Hero Entry Animation
             gsap.to('#section-1 .text-content', { opacity: 1, y: 0, duration: 1.5, ease: "power4.out", delay: 0.5 });
             gsap.fromTo(particleGroup.scale, {x: 0, y: 0, z: 0}, {x: 1, y: 1, z: 1, duration: 2.5, ease: "expo.out", delay: 0.2});
         });
@@ -370,10 +367,10 @@
             scrollTrigger: { trigger: "#section-3", start: "top bottom", end: "center center", scrub: 1 }
         });
 
-        // Staggered Text Reveal for Sections 2 & 3
+        // Staggered Text Reveal
         const textSections = document.querySelectorAll('.text-content');
         textSections.forEach((section, index) => {
-            if(index === 0) return; // Skip first section (handled on load)
+            if(index === 0) return; // Skip hero section
             
             gsap.to(section, {
                 opacity: 1, y: 0,
@@ -381,12 +378,12 @@
                 ease: "power3.out",
                 scrollTrigger: {
                     trigger: section,
-                    start: "top 80%", // Animates when the top of the card hits 80% down the screen
+                    start: "top 80%", 
                 }
             });
         });
 
-        // Responsive Resizing
+        // Responsive Canvas Resizing
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
