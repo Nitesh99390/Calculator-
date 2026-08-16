@@ -8,7 +8,7 @@
     <!-- खोजने के लिए मुख्य टैग -->
     <title>Priya infinity pro app</title>
     <meta name="title" content="Priya infinity pro app">
-    <meta name="description" content="Priya infinity pro app का नवीनतम संस्करण डाउनलोड करें।">
+    <meta name="description" content="Priya infinity pro app का नवीनतम संस्करण प्राप्त करें।">
     <meta name="keywords" content="Priya infinity pro app, download, Nitesh99390">
     <meta name="author" content="Nitesh99390">
     <meta name="robots" content="index, follow">
@@ -19,7 +19,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yourwebsite.com">
     <meta property="og:title" content="Priya infinity pro app">
-    <meta property="og:description" content="Priya infinity pro app का नवीनतम संस्करण डाउनलोड करें।">
+    <meta property="og:description" content="Priya infinity pro app का नवीनतम संस्करण प्राप्त करें।">
     
     <!-- गूगल के लिए विशेष जानकारी -->
     <script type="application/ld+json">
@@ -43,7 +43,6 @@
 
     <style>
         :root {
-            --primary-color: #ff0000;
             --card-bg: rgba(32, 32, 32, 0.8);
             --border-color: rgba(255, 255, 255, 0.1);
         }
@@ -84,9 +83,11 @@
             text-align: center;
             width: 90%;
             max-width: 500px;
-            height: 320px;
+            min-height: 350px;
+            padding: 60px 20px 40px 20px;
             position: relative;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
@@ -111,36 +112,71 @@
             opacity: 0.8;
         }
 
-        /* बटन की गतिशीलता */
+        /* बटनों का समूह */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            width: 100%;
+            align-items: center;
+            margin-top: 10px;
+        }
+
         .download-btn {
             display: inline-block;
-            background-color: var(--primary-color);
             color: #ffffff;
-            padding: 16px 45px;
-            font-size: 1.25rem;
+            padding: 16px 20px;
+            width: 85%;
+            font-size: 1.1rem;
             font-weight: bold;
             text-decoration: none;
             border-radius: 50px;
             transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-            animation: glowing 2s infinite;
         }
 
-        @keyframes glowing {
+        .download-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* गोफाइल बटन की गतिशीलता */
+        .gofile-btn {
+            background-color: #ff0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+            animation: glowingRed 2s infinite;
+        }
+
+        @keyframes glowingRed {
             0% { box-shadow: 0 0 5px rgba(255, 0, 0, 0.4); }
             50% { box-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 0 0 10px rgba(255, 0, 0, 0.6); }
             100% { box-shadow: 0 0 5px rgba(255, 0, 0, 0.4); }
         }
 
-        .download-btn:hover {
+        .gofile-btn:hover {
             background-color: #cc0000;
             transform: scale(1.05);
             animation: none;
             box-shadow: 0 10px 25px rgba(255, 0, 0, 0.7);
         }
 
-        .download-btn:active {
-            transform: scale(0.95);
+        /* गिटहब बटन की गतिशीलता */
+        .github-btn {
+            background-color: #333333;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            animation: glowingGrey 2s infinite;
+            animation-delay: 1s; /* दोनों बटनों की चमक अलग-अलग समय पर दिखाने के लिए */
+        }
+
+        @keyframes glowingGrey {
+            0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.3); }
+            100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); }
+        }
+
+        .github-btn:hover {
+            background-color: #1a1a1a;
+            transform: scale(1.05);
+            animation: none;
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
@@ -151,9 +187,15 @@
             <span>Priya infinity pro app</span>
         </div>
         
-        <a href="https://github.com/Nitesh99390/YouTube-/releases/download/Hello0/app-debug.signed.apk" class="download-btn" target="_blank" rel="noopener noreferrer">
-            अभी डाउनलोड करें
-        </a>
+        <div class="button-group">
+            <a href="https://gofile.io/d/WJiDOqiP" class="download-btn gofile-btn" target="_blank" rel="noopener noreferrer">
+                गोफाइल से प्राप्त करें
+            </a>
+            
+            <a href="https://github.com/Nitesh99390/YouTube-/releases/download/Hello0/app-debug.signed.apk" class="download-btn github-btn" target="_blank" rel="noopener noreferrer">
+                गिटहब से प्राप्त करें
+            </a>
+        </div>
     </main>
 
 </body>
